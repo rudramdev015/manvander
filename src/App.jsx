@@ -17,7 +17,7 @@ const PageLoader = () => (
         <div className="absolute inset-0 border-4 border-primary-500 rounded-full border-t-transparent animate-spin"></div>
       </div>
       <span className="font-serif text-2xl italic text-gray-800">
-        Luxie<span className="text-primary-500">Photo</span>
+        House<span className="text-primary-500"> of Echoes</span>
       </span>
       <p className="text-gray-400 text-sm mt-2">Loading...</p>
     </div>

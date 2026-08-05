@@ -30,8 +30,7 @@ const ContactSection = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Validation
+
     if (!formData.name.trim()) {
       setStatus({ type: 'error', message: 'Please enter your name.' });
       return;
@@ -42,9 +41,8 @@ const ContactSection = () => {
     }
 
     setIsSubmitting(true);
-    
+
     try {
-      // Send to Web3Forms
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
@@ -53,8 +51,8 @@ const ContactSection = () => {
         },
         body: JSON.stringify({
           access_key: '370cfe1e-f1d9-4c5a-8b00-143492231f31',
-          subject: `New Booking Request from ${formData.name}`,
-          from_name: 'LuxiePhoto Website',
+          subject: `New Enquiry from ${formData.name}`,
+          from_name: 'House of Echoes Website',
           name: formData.name,
           email: formData.email,
           phone: formData.phone || 'Not provided',
@@ -65,7 +63,7 @@ const ContactSection = () => {
       const result = await response.json();
 
       if (result.success) {
-        setStatus({ type: 'success', message: 'Thank you! We\'ll get back to you within 24 hours.' });
+        setStatus({ type: 'success', message: 'Thank you! We\'ll get back to you shortly with a tailored plan.' });
         setFormData({
           name: '',
           email: '',
@@ -87,25 +85,25 @@ const ContactSection = () => {
     {
       icon: MapPin,
       label: 'Visit Us',
-      value: contactInfo?.address || 'Bali, Indonesia',
-      link: `https://maps.google.com/?q=${encodeURIComponent(contactInfo?.address || 'Bali')}`,
+      value: contactInfo?.address || 'Pan-India service area',
+      link: `https://maps.google.com/?q=${encodeURIComponent(contactInfo?.address || 'India')}`,
     },
     {
       icon: Phone,
       label: 'Call Us',
-      value: contactInfo?.phone || '+62 815 2253 778',
+      value: contactInfo?.phone || '+91-98765-43210',
       link: `tel:${(contactInfo?.phone || '').replace(/\s/g, '')}`,
     },
     {
       icon: Mail,
       label: 'Email Us',
-      value: contactInfo?.email || 'hello@luxiephoto.com',
-      link: `mailto:${contactInfo?.email || 'hello@luxiephoto.com'}`,
+      value: contactInfo?.email || 'hello@houseofechoes.com',
+      link: `mailto:${contactInfo?.email || 'hello@houseofechoes.com'}`,
     },
     {
       icon: Clock,
       label: 'Working Hours',
-      value: contactInfo?.hours || 'Mon - Sat: 9:00 AM - 6:00 PM',
+      value: contactInfo?.hours || 'Available for bookings across India',
     },
   ];
 
@@ -123,13 +121,13 @@ const ContactSection = () => {
             <SectionTitle
               subtitle={contactInfo?.subtitle || "Get In Touch"}
               decorativeText={contactInfo?.decorativeText || "Contact"}
-              title={contactInfo?.title || "Let's Create Something Beautiful Together"}
+              title={contactInfo?.title || "Let's Write Your Story"}
               align="left"
               animated={false}
             />
 
             <p className="text-gray-600 text-lg leading-relaxed mb-10">
-              {contactInfo?.description || "Ready to capture your special moments? We'd love to hear about your plans. Fill out the form or reach out directly – let's start planning your perfect shoot."}
+              {contactInfo?.description || "Have a wedding, celebration, or event coming up? Let's talk about how House of Echoes can capture it."}
             </p>
 
             {/* Contact Details */}
@@ -164,8 +162,8 @@ const ContactSection = () => {
           {/* Right Content - Form */}
           <AnimatedSection animation="fadeInRight">
             <div className="bg-white rounded-3xl shadow-xl p-8 lg:p-10">
-              <h3 className="font-serif text-2xl text-gray-900 mb-2">{contactInfo?.formTitle || "Book a Session"}</h3>
-              <p className="text-gray-500 mb-8">{contactInfo?.formDescription || "Fill out the form and we'll get back to you within 24 hours."}</p>
+              <h3 className="font-serif text-2xl text-gray-900 mb-2">{contactInfo?.formTitle || "Enquire Now"}</h3>
+              <p className="text-gray-500 mb-8">{contactInfo?.formDescription || "Share your dates, event type, and location — we'll get back with a tailored plan."}</p>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Name & Email Row */}

@@ -90,35 +90,40 @@ const Header = () => {
         <div className="container-custom">
           <nav className="flex items-center justify-between">
             {/* Logo */}
-            <Link 
-              to="/" 
-              className="relative z-10 flex items-center group"
+            <Link
+              to="/"
+              className="relative z-10 flex items-center gap-3 group"
             >
-              {(settings?.logoLight || settings?.logoDark) ? (
-                <img 
-                  src={headerBg 
-                    ? (settings.logoDark || settings.logoLight) 
-                    : (settings.logoLight || settings.logoDark)} 
-                  alt={settings.siteName || 'LuxiePhoto'} 
-                  style={{ 
-                    height: `${headerBg 
-                      ? (settings.logoDarkHeight || 48) 
-                      : (settings.logoLightHeight || 48)}px` 
+              {(settings?.logoLight || settings?.logoDark) && (
+                <img
+                  src={headerBg
+                    ? (settings.logoDark || settings.logoLight)
+                    : (settings.logoLight || settings.logoDark)}
+                  alt={settings.siteName || 'House of Echoes'}
+                  style={{
+                    height: `${headerBg
+                      ? (settings.logoDarkHeight || 40)
+                      : (settings.logoLightHeight || 40)}px`,
+                    // The brand mark is a dark red ring - on the transparent
+                    // header it sits over photos and can vanish into dark
+                    // areas, so give it a soft white halo for contrast there.
+                    filter: headerBg
+                      ? 'none'
+                      : 'drop-shadow(0 1px 2px rgba(0,0,0,.35)) drop-shadow(0 0 6px rgba(255,255,255,.85))',
                   }}
                   className="w-auto transition-all duration-300"
                 />
-              ) : (
-                <motion.span
-                  className={cn(
-                    'font-serif text-2xl md:text-3xl italic tracking-wide transition-colors duration-300',
-                    headerBg ? 'text-dark-900' : 'text-white'
-                  )}
-                  whileHover={{ scale: 1.02 }}
-                >
-                  Luxie
-                  <span className="text-primary-500">Photo</span>
-                </motion.span>
               )}
+              <motion.span
+                className={cn(
+                  'font-serif text-2xl md:text-3xl italic tracking-wide transition-colors duration-300',
+                  headerBg ? 'text-dark-900' : 'text-white'
+                )}
+                whileHover={{ scale: 1.02 }}
+              >
+              House
+              <span className="text-primary-500"> of Echoes</span>
+              </motion.span>
             </Link>
 
             {/* Desktop Navigation */}
@@ -151,7 +156,7 @@ const Header = () => {
                 size="sm"
                 onClick={(e) => scrollToSection(e, '#contact')}
               >
-                Book Now
+                Enquire Now
               </Button>
             </div>
 
@@ -206,8 +211,15 @@ const Header = () => {
               <div className="flex flex-col h-full">
                 {/* Header */}
                 <div className="flex items-center justify-between p-6 border-b border-gray-100">
-                  <span className="font-serif text-2xl italic text-dark-900">
-                    Luxie<span className="text-primary-500">Photo</span>
+                  <span className="flex items-center gap-2 font-serif text-2xl italic text-dark-900">
+                    {(settings?.logoDark || settings?.logoLight) && (
+                      <img
+                        src={settings.logoDark || settings.logoLight}
+                        alt={settings.siteName || 'House of Echoes'}
+                        className="h-8 w-auto"
+                      />
+                    )}
+                    House<span className="text-primary-500"> of Echoes</span>
                   </span>
                   <button
                     onClick={() => setMobileMenuOpen(false)}
@@ -252,7 +264,7 @@ const Header = () => {
                     className="w-full"
                     onClick={(e) => scrollToSection(e, '#contact')}
                   >
-                    Book a Session
+                    Enquire Now
                   </Button>
                 </div>
               </div>

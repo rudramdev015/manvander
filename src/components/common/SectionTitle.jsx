@@ -47,6 +47,15 @@ const SectionTitle = ({
   const Wrapper = animated ? motion.div : 'div';
   const Item = animated ? motion.div : 'div';
 
+  const wrapperMotionProps = animated
+    ? {
+        variants: containerVariants,
+        initial: 'hidden',
+        whileInView: 'visible',
+        viewport: { once: true, margin: '-50px' },
+      }
+    : {};
+
   return (
     <Wrapper
       className={cn(
@@ -54,14 +63,11 @@ const SectionTitle = ({
         alignmentClasses[align],
         className
       )}
-      variants={animated ? containerVariants : undefined}
-      initial={animated ? 'hidden' : undefined}
-      whileInView={animated ? 'visible' : undefined}
-      viewport={{ once: true, margin: '-50px' }}
+      {...wrapperMotionProps}
     >
       {/* Subtitle */}
       {subtitle && (
-        <Item variants={animated ? itemVariants : undefined}>
+        <Item {...(animated ? { variants: itemVariants } : {})}>
           <span
             className={cn(
               'inline-block text-sm tracking-[0.2em] uppercase font-medium mb-4',
@@ -75,7 +81,7 @@ const SectionTitle = ({
 
       {/* Decorative Text */}
       {decorativeText && (
-        <Item variants={animated ? itemVariants : undefined}>
+        <Item {...(animated ? { variants: itemVariants } : {})}>
           <span
             className={cn(
               'block font-serif italic text-4xl md:text-5xl lg:text-6xl mb-2',
@@ -89,7 +95,7 @@ const SectionTitle = ({
 
       {/* Main Title */}
       {title && (
-        <Item variants={animated ? itemVariants : undefined}>
+        <Item {...(animated ? { variants: itemVariants } : {})}>
           <h2
             className={cn(
               'font-serif text-3xl md:text-4xl lg:text-5xl leading-tight',
@@ -104,7 +110,7 @@ const SectionTitle = ({
 
       {/* Description */}
       {description && (
-        <Item variants={animated ? itemVariants : undefined}>
+        <Item {...(animated ? { variants: itemVariants } : {})}>
           <p
             className={cn(
               'mt-4 md:mt-6 text-base md:text-lg leading-relaxed max-w-2xl',

@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { applyThemeColors, DEFAULT_BRAND_COLOR } from '@/utils/colorTheme';
 
 // Default data (fallback)
 import * as mockData from '@/data/mock';
@@ -10,32 +11,27 @@ import contactContent from '../../content/contact/contact.json';
 import settingsContent from '../../content/settings/general.json';
 import socialContent from '../../content/settings/social.json';
 
-// Import Services
-import serviceWeddingPhoto from '../../content/services/wedding-photography.json';
-import serviceWeddingVideo from '../../content/services/wedding-videography.json';
-import servicePhotoRetouch from '../../content/services/photo-retouching.json';
-import servicePreWedding from '../../content/services/pre-wedding-shoot.json';
-
 // Import Portfolio from _data.json (single source of truth)
 import portfolioDataFile from '../../content/portfolio/_data.json';
 
 // Import Testimonials from _data.json
 import testimonialsDataFile from '../../content/testimonials/_data.json';
 
-// Import Pricing
-import pricingEssential from '../../content/pricing/essential.json';
-import pricingPremium from '../../content/pricing/premium.json';
-import pricingLuxury from '../../content/pricing/luxury.json';
+// Services, Pricing and Partners are each one file per item (folder-based CMS
+// collections). Glob-import every file in the folder instead of naming each
+// one, so a new service/plan/partner added from the CMS admin shows up on
+// the site with no code change required. _data.json is excluded - portfolio
+// and testimonials use that filename for their single combined array, and a
+// couple of these folders have an old, unrelated `_data.json` left over from
+// an earlier content pass that would otherwise get read in as a bogus item.
+const serviceModules = import.meta.glob('../../content/services/*.json', { eager: true });
+const pricingModules = import.meta.glob('../../content/pricing/*.json', { eager: true });
+const partnerModules = import.meta.glob('../../content/partners/*.json', { eager: true });
 
-// Import Partners
-import partnerRoxana from '../../content/partners/roxana.json';
-import partnerFelton from '../../content/partners/felton.json';
-import partnerPennelope from '../../content/partners/pennelope.json';
-
-// Compile data arrays
-const servicesData = [serviceWeddingPhoto, serviceWeddingVideo, servicePhotoRetouch, servicePreWedding];
-const pricingData = [pricingEssential, pricingPremium, pricingLuxury];
-const partnersData = [partnerRoxana, partnerFelton, partnerPennelope];
+const notDataJson = ([path]) => !path.endsWith('/_data.json');
+const servicesData = Object.entries(serviceModules).filter(notDataJson).map(([, m]) => m.default ?? m);
+const pricingData = Object.entries(pricingModules).filter(notDataJson).map(([, m]) => m.default ?? m);
+const partnersData = Object.entries(partnerModules).filter(notDataJson).map(([, m]) => m.default ?? m);
 
 // Extract items from data files (support both array format and {items: []} format)
 const portfolioData = Array.isArray(portfolioDataFile) 
@@ -65,17 +61,9 @@ export function CMSProvider({ children }) {
   const [content, setContent] = useState(initialContent);
   const [loading, setLoading] = useState(false);
 
-  // Apply CMS colors as CSS variables
+  // Apply CMS colors as CSS variables (drives every primary-* Tailwind class)
   useEffect(() => {
-    const colors = content?.settings?.colors;
-    if (colors) {
-      const root = document.documentElement;
-      root.style.setProperty('--color-primary', colors.primary || '#388f6b');
-      root.style.setProperty('--color-gold', colors.gold || '#FFD700');
-      root.style.setProperty('--color-forest', colors.forest || '#001b0e');
-      root.style.setProperty('--color-dark', colors.dark || '#1a1a1a');
-      root.style.setProperty('--color-white', colors.white || '#ffffff');
-    }
+    applyThemeColors(content?.settings?.colors || {});
   }, [content?.settings?.colors]);
 
   // Provide CMS data with mock data as fallback
@@ -85,15 +73,15 @@ export function CMSProvider({ children }) {
     
     // Helper getters that return CMS data or mock data
     getSiteSettings: () => content?.settings || {
-      siteName: 'LuxiePhoto',
-      primaryColor: '#388f6b',
+      siteName: 'House of Echoes',
+      primaryColor: DEFAULT_BRAND_COLOR,
       fontHeading: 'Playfair Display',
       fontBody: 'Poppins'
     },
-    
+
     // Get Brand Colors
     getColors: () => content?.settings?.colors || {
-      primary: '#388f6b',
+      primary: DEFAULT_BRAND_COLOR,
       gold: '#FFD700',
       forest: '#001b0e',
       dark: '#1a1a1a',
@@ -151,7 +139,7 @@ export function CMSProvider({ children }) {
     
     getFooter: () => ({
       description: content?.contact?.description || mockData.contactInfo?.description,
-      copyright: '© 2026 Luxie Photography. All rights reserved.'
+      copyright: '© 2026 House of Echoes. All rights reserved.'
     }),
     
     getNavigation: () => mockData.navigationLinks

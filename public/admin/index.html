@@ -63,6 +63,16 @@
                   { name: 'logoDarkHeight', label: 'Logo Dark Height (px)', widget: 'number', default: 48, min: 24, max: 120, required: false, hint: 'Ukuran tinggi logo dalam pixel (24-120px)' },
                   { name: 'logoFooter', label: 'Logo Footer', widget: 'image', required: false },
                   {
+                    name: 'colors',
+                    label: '🎨 Brand Colors',
+                    widget: 'object',
+                    required: false,
+                    hint: 'Mengubah warna primary akan langsung mengubah warna tombol, link, dan aksen di seluruh website.',
+                    fields: [
+                      { name: 'primary', label: 'Primary Brand Color', widget: 'color', default: '#A00000' }
+                    ]
+                  },
+                  {
                     name: 'social',
                     label: 'Social Media',
                     widget: 'object',
@@ -143,38 +153,62 @@
           {
             name: 'portfolio',
             label: '📸 Portfolio',
-            folder: 'content/portfolio',
-            create: true,
-            slug: '{{slug}}',
-            extension: 'json',
-            format: 'json',
-            fields: [
-              { name: 'names', label: 'Couple Names', widget: 'string' },
-              { name: 'category', label: 'Category', widget: 'select', options: ['Wedding', 'Pre-Wedding', 'Engagement', 'Garden Wedding', 'Beach Wedding', 'Rustic Wedding', 'Luxury Wedding', 'Traditional Wedding', 'Mountain Wedding', 'Castle Wedding'] },
-              { name: 'location', label: 'Location', widget: 'string' },
-              { name: 'description', label: 'Description', widget: 'text' },
-              { name: 'image', label: 'Main Image', widget: 'image' },
-              { name: 'date', label: 'Date', widget: 'datetime', required: false },
-              { name: 'featured', label: 'Featured', widget: 'boolean', default: false },
-              { name: 'gallery', label: 'Gallery Images', widget: 'list', required: false, field: { name: 'image', label: 'Image', widget: 'image' } }
+            files: [
+              {
+                name: 'portfolio-data',
+                label: 'Portfolio Items',
+                file: 'content/portfolio/_data.json',
+                fields: [
+                  {
+                    name: 'items',
+                    label: 'Portfolio Items',
+                    label_singular: 'Portfolio',
+                    widget: 'list',
+                    summary: '{{fields.names}} - {{fields.location}}',
+                    fields: [
+                      { name: 'id', label: 'ID (unique)', widget: 'string', hint: 'Unique id, e.g. john-jane' },
+                      { name: 'names', label: 'Couple Names / Title', widget: 'string' },
+                      { name: 'category', label: 'Category', widget: 'select', options: ['Wedding', 'Pre-Wedding', 'Engagement', 'Garden Wedding', 'Beach Wedding', 'Rustic Wedding', 'Luxury Wedding', 'Traditional Wedding', 'Mountain Wedding', 'Castle Wedding', 'Corporate Event', 'Cultural Celebration', 'Destination Wedding'] },
+                      { name: 'location', label: 'Location', widget: 'string' },
+                      { name: 'description', label: 'Description', widget: 'text' },
+                      { name: 'image', label: 'Cover Image', widget: 'image' },
+                      { name: 'date', label: 'Date', widget: 'datetime', required: false },
+                      { name: 'featured', label: 'Featured (shows on homepage)', widget: 'boolean', default: false },
+                      { name: 'gallery', label: 'Gallery Images', widget: 'list', required: false, field: { name: 'image', label: 'Image', widget: 'image' } }
+                    ]
+                  }
+                ]
+              }
             ]
           },
           {
             name: 'testimonials',
             label: '💬 Testimonials',
-            folder: 'content/testimonials',
-            create: true,
-            slug: '{{slug}}',
-            extension: 'json',
-            format: 'json',
-            fields: [
-              { name: 'names', label: 'Couple Names', widget: 'string' },
-              { name: 'role', label: 'Role', widget: 'string', default: 'Bride & Groom' },
-              { name: 'rating', label: 'Rating', widget: 'number', min: 1, max: 5, default: 5 },
-              { name: 'text', label: 'Testimonial Text', widget: 'text' },
-              { name: 'location', label: 'Location/Event', widget: 'string' },
-              { name: 'avatar', label: 'Avatar Image', widget: 'image', required: false },
-              { name: 'image', label: 'Wedding Image', widget: 'image', required: false }
+            files: [
+              {
+                name: 'testimonials-data',
+                label: 'Testimonial Items',
+                file: 'content/testimonials/_data.json',
+                fields: [
+                  {
+                    name: 'items',
+                    label: 'Testimonials',
+                    label_singular: 'Testimonial',
+                    widget: 'list',
+                    summary: '{{fields.names}} - {{fields.location}}',
+                    fields: [
+                      { name: 'id', label: 'ID (unique)', widget: 'string', hint: 'Unique id, e.g. john-jane' },
+                      { name: 'names', label: 'Couple Names', widget: 'string' },
+                      { name: 'role', label: 'Role', widget: 'string', default: 'Bride & Groom' },
+                      { name: 'rating', label: 'Rating', widget: 'number', min: 1, max: 5, default: 5 },
+                      { name: 'text', label: 'Testimonial Text', widget: 'text' },
+                      { name: 'location', label: 'Location/Event', widget: 'string' },
+                      { name: 'avatar', label: 'Avatar Image', widget: 'image', required: false },
+                      { name: 'image', label: 'Wedding Image', widget: 'image', required: false }
+                    ]
+                  }
+                ]
+              }
             ]
           },
           {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Camera, Video, Palette, Heart, ArrowRight, Award, Users, Clock } from 'lucide-react';
+import { Camera, Video, Palette, Heart, ArrowRight } from 'lucide-react';
 import { useCMS } from '@/context/CMSContext';
 import { SectionTitle, Button, OptimizedImage, AnimatedSection, StaggerContainer, StaggerItem } from '@/components/common';
 import { cn } from '@/utils/helpers';
@@ -27,18 +27,12 @@ const AboutSection = () => {
   const images = aboutContent?.images || defaultImages;
 
   // Get badge data from CMS or use defaults
-  const badgeNumber = aboutContent?.badge?.number || aboutContent?.badgeNumber || '15+';
-  const badgeLabel = aboutContent?.badge?.label || aboutContent?.badgeLabel || 'YEARS';
-  
+  const badgeNumber = aboutContent?.badge?.number || aboutContent?.badgeNumber || '2026';
+  const badgeLabel = aboutContent?.badge?.label || aboutContent?.badgeLabel || 'Since';
+   
   // Get CTA data from CMS or use defaults
-  const ctaText = aboutContent?.cta?.text || aboutContent?.ctaText || 'Learn More';
-  const ctaLink = aboutContent?.cta?.link || aboutContent?.ctaLink || 'https://wa.me/6282169990088?text=Halo,%20saya%20tertarik%20untuk%20mengetahui%20lebih%20lanjut%20tentang%20layanan%20LuxiePhoto';
-
-  const achievements = [
-    { icon: Award, number: '50+', label: 'Awards Won' },
-    { icon: Users, number: '500+', label: 'Happy Couples' },
-    { icon: Clock, number: badgeNumber, label: badgeLabel + ' Experience' },
-  ];
+  const ctaText = aboutContent?.cta?.text || aboutContent?.ctaText || 'Enquire Now';
+  const ctaLink = aboutContent?.cta?.link || aboutContent?.ctaLink || 'https://wa.me/919876543210?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20House%20of%20Echoes';
 
   return (
     <section className="py-24 lg:py-32 bg-white relative overflow-hidden">
@@ -128,7 +122,7 @@ const AboutSection = () => {
               <SectionTitle
                 subtitle={aboutContent?.subtitle || 'About Us'}
                 decorativeText={aboutContent?.decorativeText || 'Our Story'}
-                title={aboutContent?.title || "We're Luxie, Passionate Wedding Storytellers"}
+                title={aboutContent?.title || "Quiet Beginnings"}
                 description={aboutContent?.description}
                 alignment="left"
               />
@@ -154,7 +148,7 @@ const AboutSection = () => {
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pt-8 border-t border-gray-100">
                 <div>
                   <span className="font-serif italic text-3xl text-gray-800 block mb-1">
-                    {aboutContent?.signature || 'Luxie Photo'}
+                    {aboutContent?.signature || 'House of Echoes'}
                   </span>
                   <span className="text-sm text-gray-500">{aboutContent?.signatureRole || aboutContent?.experience || 'Lead Photographer'}</span>
                 </div>
@@ -176,8 +170,8 @@ const AboutSection = () => {
           <SectionTitle
             subtitle="Our Services"
             decorativeText="What We Do"
-            title="Premium Photography Services"
-            description="We offer comprehensive photography and videography services tailored to capture your unique love story."
+            title="End-to-End Event Management & Cinematic Coverage"
+            description="From weddings and pre-wedding shoots to corporate events and cultural celebrations, we plan and capture your story across India."
           />
 
           <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-4 gap-6" staggerDelay={0.1}>

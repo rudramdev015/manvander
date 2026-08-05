@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useCMS } from '@/context/CMSContext';
 
 const WhatsAppIcon = ({ className }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -7,8 +8,10 @@ const WhatsAppIcon = ({ className }) => (
   </svg>
 );
 
-const FloatingWhatsApp = ({ phoneNumber = '6282169990088', message = 'Halo, saya tertarik dengan jasa fotografi Luxie Photo' }) => {
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+const FloatingWhatsApp = ({ phoneNumber, message = 'Hello, I would like to enquire about House of Echoes' }) => {
+  const { getSocialMedia } = useCMS();
+  const number = phoneNumber || getSocialMedia()?.whatsapp || '+919876543210';
+  const whatsappUrl = `https://wa.me/${number.replace(/\D/g, '')}?text=${encodeURIComponent(message)}`;
 
   return (
     <motion.a

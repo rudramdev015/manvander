@@ -70,9 +70,9 @@ const TestimonialsSection = () => {
         {/* Section Header */}
         <SectionTitle
           subtitle="Testimonials"
-          decorativeText="Love Notes"
-          title="What Our Couples Say"
-          description="Hear from the couples whose stories we've had the honor of capturing."
+          decorativeText="In Their Words"
+          title="What Clients Say"
+          description="Hear from families, couples, and brands who trusted House of Echoes with their most meaningful moments."
         />
 
         {/* Testimonial Slider */}
@@ -256,7 +256,7 @@ const TestimonialsSection = () => {
                 ))}
               </div>
               <span className="text-gray-600 text-sm">
-                <strong>500+</strong> Happy Couples
+                <strong>100+</strong> Events Covered
               </span>
             </div>
             <div className="flex items-center gap-2">
@@ -264,7 +264,7 @@ const TestimonialsSection = () => {
                 <Star key={i} className="w-5 h-5 text-yellow-400 fill-yellow-400" />
               ))}
               <span className="text-gray-600 text-sm">
-                <strong>4.9</strong> Average Rating
+                <strong>5.0</strong> Average Rating
               </span>
             </div>
           </div>

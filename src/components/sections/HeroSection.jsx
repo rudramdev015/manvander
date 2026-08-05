@@ -1,23 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 import { useCMS } from '@/context/CMSContext';
-import { OptimizedImage } from '@/components/common';
+import { OptimizedImage, Button } from '@/components/common';
 import { cn } from '@/utils/helpers';
 
 const HeroSection = () => {
   const { getHero } = useCMS();
   const heroContent = getHero();
-  
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Use images from CMS or fallback for background
   const heroImages = heroContent?.backgroundImages || [
     '/image/LUXIE_13.jpg',
     '/image/LUXIE_19.jpg',
     '/image/LUXIE_22.jpg',
   ];
 
-  // Auto-change background image
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
@@ -25,9 +24,15 @@ const HeroSection = () => {
     return () => clearInterval(interval);
   }, [heroImages.length]);
 
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background Images with Crossfade */}
       <div className="absolute inset-0">
         <AnimatePresence mode="wait">
           <motion.div
@@ -40,20 +45,18 @@ const HeroSection = () => {
           >
             <OptimizedImage
               src={heroImages[currentImageIndex]}
-              alt="Wedding photography"
+              alt="Cinematic wedding and event coverage"
               className="w-full h-full"
               containerClassName="w-full h-full"
               priority
             />
           </motion.div>
         </AnimatePresence>
-        
-        {/* Dark Overlay - More prominent for elegant look */}
+
         <div className="absolute inset-0 bg-dark-900/60" />
         <div className="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-transparent to-dark-900/40" />
       </div>
 
-      {/* Subtle Decorative Particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute inset-0">
           {[...Array(10)].map((_, i) => (
@@ -78,33 +81,61 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Main Content - Minimal & Elegant - Positioned at bottom */}
       <div className="relative z-10 container-custom w-full h-screen flex flex-col justify-end pb-24 sm:pb-32">
         <div className="text-center max-w-4xl mx-auto">
-          
-          {/* Subtitle - Elegant uppercase */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             className="text-white/60 text-xs sm:text-sm tracking-[0.3em] uppercase mb-4"
           >
-            {heroContent?.subtitle || "We Don't Live Forever. Memories Do."}
+            {heroContent?.subtitle || "Every Echo Tells a Story."}
           </motion.p>
 
-          {/* Main Title - Script/Elegant Font with Green color */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
             className="font-serif italic text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-primary-400 leading-tight"
           >
-            {heroContent?.title || "Timeless Moments."}
+            {heroContent?.title || "House of Echoes"}
           </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
+            className="mt-6 text-base sm:text-lg text-white/80 max-w-3xl mx-auto leading-relaxed"
+          >
+            {heroContent?.description || "Pan-India event management and cinematic coverage for weddings, corporate events, and cultural celebrations."}
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.9 }}
+            className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4"
+          >
+            <Button
+              variant="primary"
+              size="lg"
+              icon={ArrowRight}
+              iconPosition="right"
+              onClick={() => scrollToSection('contact')}
+            >
+              {heroContent?.ctaText || 'Enquire Now'}
+            </Button>
+            <Button
+              variant="outline-white"
+              size="lg"
+              onClick={() => scrollToSection('portfolio')}
+            >
+              {heroContent?.ctaSecondaryText || 'View Our Work'}
+            </Button>
+          </motion.div>
         </div>
       </div>
 
-      {/* Background Image Indicators - Subtle dots */}
       <div className="absolute bottom-8 right-8 hidden lg:flex space-x-2">
         {heroImages.map((_, index) => (
           <button

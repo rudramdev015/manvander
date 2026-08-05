@@ -1,25 +1,19 @@
 {
   "id": "luxury",
-  "name": "Luxury",
-  "subtitle": "The complete experience",
-  "price": 4999,
-  "currency": "$",
+  "name": "Grand Echo",
+  "subtitle": "The complete experience for destination celebrations and multi-day events",
+  "price": 450000,
+  "currency": "₹",
   "period": "per event",
   "popular": false,
   "order": 3,
-  "ctaText": "Choose Luxury",
+  "ctaText": "Enquire Now",
   "features": [
-    "Full Day Coverage",
-    "3 Professional Photographers",
-    "800+ Edited Photos",
-    "Online Gallery",
-    "Print Release",
-    "Engagement Session",
-    "Full Wedding Film",
-    "Premium Album",
-    "Drone Coverage",
-    "Same-Day Edit"
+    "Full-day event management",
+    "Wedding photography and film",
+    "Drone coverage and same-day edit",
+    "Venue planning and vendor coordination"
   ],
   "notIncluded": [],
-  "ctaLink": "https://wa.me/6282169990088?text=Halo, saya tertarik dengan paket Luxury"
+  "ctaLink": "https://wa.me/919876543210?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20the%20Grand%20Echo%20package"
 }

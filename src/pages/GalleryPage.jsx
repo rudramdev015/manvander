@@ -85,7 +85,7 @@ const GalleryPage = () => {
               <span>Back</span>
             </button>
             <a href="/" className="font-serif text-2xl italic">
-              {settings?.siteName || 'LuxiePhoto'}
+              {settings?.siteName || 'House of Echoes'}
             </a>
             <div className="flex items-center gap-2">
               <button
@@ -258,7 +258,7 @@ const GalleryPage = () => {
       <footer className="bg-gray-900 text-white py-8">
         <div className="container mx-auto px-4 text-center">
           <p className="font-serif text-xl italic mb-2">
-            {settings?.siteName || 'LuxiePhoto'}
+            {settings?.siteName || 'House of Echoes'}
           </p>
           <p className="text-gray-400 text-sm">
             © {new Date().getFullYear()} All rights reserved.

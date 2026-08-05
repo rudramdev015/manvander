@@ -1,54 +1,77 @@
 [
   {
     "id": "wedding-photography",
-    "title": "Wedding Photography",
+    "title": "Forever, Framed",
+    "subtitle": "Wedding Photography & Films",
     "icon": "Camera",
-    "description": "Full-day coverage capturing every precious moment from preparation to reception.",
+    "description": "From the first haldi to the last dance, our wedding photography and cinematic wedding films are built to hold every emotion your big day carries. Candid wedding photography, drone coverage, same-day edits, and full-length wedding films — designed to feel like your story, not a template.",
     "order": 1,
     "features": [
-      "8+ Hours Coverage",
-      "Multiple Photographers",
-      "500+ Edited Photos",
-      "Online Gallery"
-    ]
-  },
-  {
-    "id": "wedding-videography",
-    "title": "Wedding Videography",
-    "icon": "Video",
-    "description": "Cinematic films that bring your wedding day back to life.",
-    "order": 2,
-    "features": [
-      "4K Quality",
-      "Drone Footage",
-      "Same-Day Edit",
-      "Highlight Reel"
-    ]
-  },
-  {
-    "id": "photo-retouching",
-    "title": "Photo Retouching",
-    "icon": "Brush",
-    "description": "Professional editing to perfect every image while maintaining natural beauty.",
-    "order": 3,
-    "features": [
-      "Color Correction",
-      "Skin Retouching",
-      "Background Enhancement",
-      "Album Design"
-    ]
+      "Candid wedding photography",
+      "Drone coverage",
+      "Same-day edits",
+      "Full-length wedding films"
+    ],
+    "signature": "House of Echoes"
   },
   {
     "id": "pre-wedding-shoot",
-    "title": "Pre-Wedding Shoot",
+    "title": "Before the Vows",
+    "subtitle": "Pre-Wedding Shoots",
     "icon": "Heart",
-    "description": "Romantic sessions to capture your journey before the big day.",
+    "description": "Every love story deserves a chapter before the wedding itself. Our pre-wedding shoot photography takes you to locations that match your story — from mountains to old havelis to your own backyard — captured with a cinematic, editorial eye.",
+    "order": 2,
+    "features": [
+      "Location scouting across India",
+      "Cinematic storytelling",
+      "Editorial-style photography",
+      "Multiple outfit changes"
+    ],
+    "signature": "House of Echoes"
+  },
+  {
+    "id": "corporate-events",
+    "title": "Business, Beautifully Told",
+    "subtitle": "Corporate Event Coverage",
+    "icon": "Briefcase",
+    "description": "Product launches, conferences, brand anniversaries, corporate offsites — our corporate event photography and videography team captures the energy of your brand's biggest moments with the same precision we bring to a wedding.",
+    "order": 3,
+    "features": [
+      "Product launch coverage",
+      "Conference photography",
+      "Brand event documentation",
+      "Corporate video production"
+    ],
+    "signature": "House of Echoes"
+  },
+  {
+    "id": "cultural-celebrations",
+    "title": "Roots, Remembered",
+    "subtitle": "Cultural & Community Celebrations",
+    "icon": "Flower",
+    "description": "Festivals, community gatherings, religious ceremonies, cultural celebrations — we specialize in capturing tradition with respect and warmth, so heritage is never lost, only preserved on film.",
     "order": 4,
     "features": [
-      "Location Scouting",
-      "Styling Consultation",
-      "100+ Photos",
-      "Multiple Outfits"
-    ]
+      "Festival photography",
+      "Community event coverage",
+      "Religious ceremony documentation",
+      "Cultural heritage preservation"
+    ],
+    "signature": "House of Echoes"
+  },
+  {
+    "id": "event-management",
+    "title": "Every Detail, Handled",
+    "subtitle": "Full Event Management",
+    "icon": "ClipboardList",
+    "description": "Beyond photography and films, House of Echoes offers complete event management services — vendor coordination, venue planning, décor liaison, and on-ground execution — so you experience your event instead of managing it.",
+    "order": 5,
+    "features": [
+      "Vendor coordination",
+      "Venue planning",
+      "Décor liaison",
+      "On-ground execution"
+    ],
+    "signature": "House of Echoes"
   }
 ]

@@ -1,25 +1,23 @@
 {
   "id": "premium",
-  "name": "Premium",
-  "subtitle": "Our most popular package",
-  "price": 2499,
-  "currency": "$",
+  "name": "Signature Celebration",
+  "subtitle": "Our most popular package for full wedding storytelling",
+  "price": 250000,
+  "currency": "₹",
   "period": "per event",
   "popular": true,
   "order": 2,
-  "ctaText": "Choose Premium",
+  "ctaText": "Enquire Now",
   "features": [
-    "8 Hours Coverage",
-    "2 Professional Photographers",
-    "500+ Edited Photos",
-    "Online Gallery",
-    "Print Release",
-    "Engagement Session",
-    "Second Photographer",
-    "Highlight Video"
+    "Wedding photography and film",
+    "Drone coverage",
+    "Same-day highlight edit",
+    "Full gallery and teaser film"
   ],
   "notIncluded": [
-    "Full Wedding Film"
+    "Full event management",
+    "Luxury album",
+    "Extended travel"
   ],
-  "ctaLink": "https://wa.me/6282169990088?text=Halo, saya tertarik dengan paket Premium"
+  "ctaLink": "https://wa.me/919876543210?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20the%20Signature%20Celebration%20package"
 }

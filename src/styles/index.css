@@ -10,17 +10,33 @@
 /* Base Styles */
 @layer base {
   :root {
-    /* CMS Brand Colors (overridden by JS from CMS) */
-    --color-primary: #388f6b;
+    /* CMS Brand Colors (overridden at runtime by src/utils/colorTheme.js) */
+    --color-primary: #A00000;
     --color-gold: #FFD700;
     --color-forest: #001b0e;
     --color-dark: #1a1a1a;
     --color-white: #ffffff;
-    
+
+    /* Primary tint/shade ramp (as "R G B" triples) that Tailwind's
+       primary-50..950 utilities read from. Defaults below match the
+       brand logo red (#A00000); CMSProvider recomputes and overrides
+       these the moment the CMS "colors.primary" value changes. */
+    --color-primary-50-rgb: 251 245 245;
+    --color-primary-100-rgb: 246 232 232;
+    --color-primary-200-rgb: 234 199 199;
+    --color-primary-300-rgb: 219 158 158;
+    --color-primary-400-rgb: 190 82 82;
+    --color-primary-500-rgb: 160 0 0;
+    --color-primary-600-rgb: 136 0 0;
+    --color-primary-700-rgb: 109 0 0;
+    --color-primary-800-rgb: 83 0 0;
+    --color-primary-900-rgb: 61 0 0;
+    --color-primary-950-rgb: 38 0 0;
+
     /* Legacy Color Tokens (HSL) */
-    --color-primary-hsl: 330 81% 60%;
-    --color-primary-light: 330 81% 70%;
-    --color-primary-dark: 330 81% 50%;
+    --color-primary-hsl: 0 100% 31%;
+    --color-primary-light: 0 60% 53%;
+    --color-primary-dark: 0 100% 21%;
     --color-dark-hsl: 0 0% 10%;
     --color-light: 0 0% 98%;
     --color-gold-hsl: 51 100% 50%;

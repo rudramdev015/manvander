@@ -1,13 +1,15 @@
 {
   "id": "wedding-photography",
-  "title": "Wedding Photography",
+  "title": "Forever, Framed",
+  "subtitle": "Wedding Photography & Films",
   "icon": "Camera",
-  "description": "Full-day coverage capturing every precious moment from preparation to reception.",
+  "description": "From the first haldi to the last dance, our wedding photography and cinematic wedding films are built to hold every emotion your big day carries. Candid wedding photography, drone coverage, same-day edits, and full-length wedding films — designed to feel like your story, not a template.",
   "order": 1,
   "features": [
-    "8+ Hours Coverage",
-    "Multiple Photographers",
-    "500+ Edited Photos",
-    "Online Gallery"
-  ]
+    "Candid wedding photography",
+    "Drone coverage",
+    "Same-day edits",
+    "Full-length wedding films"
+  ],
+  "signature": "House of Echoes"
 }

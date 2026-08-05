@@ -22,10 +22,10 @@ const PricingSection = () => {
       <div className="container-custom relative">
         {/* Section Header */}
         <SectionTitle
-          subtitle="Pricing"
+          subtitle="Packages"
           decorativeText="Investment"
-          title="Choose Your Package"
-          description="Transparent pricing with flexible packages designed to capture every moment of your special day."
+          title="Choose Your Story"
+          description="Flexible packages for weddings, pre-wedding shoots, corporate events, and destination celebrations."
         />
 
         {/* Pricing Cards */}
@@ -153,7 +153,7 @@ const PricingSection = () => {
           className="mt-16 text-center"
         >
           <p className="text-gray-500 mb-4">
-            Need a custom package? We're happy to create something tailored just for you.
+            Need a custom package? We are happy to build something tailored to your dates, venue, and event scale.
           </p>
           <Button
             variant="link"
@@ -161,7 +161,7 @@ const PricingSection = () => {
             iconPosition="right"
             onClick={() => window.location.href = '/contact'}
           >
-            Contact us for custom pricing
+            Enquire for a custom quote
           </Button>
         </motion.div>
 

@@ -1,9 +1,48 @@
-import { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useCallback, useRef } from 'react';
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ArrowRight, MapPin, Eye, Heart, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useCMS } from '@/context/CMSContext';
 import { SectionTitle, Button, OptimizedImage, StaggerContainer, StaggerItem } from '@/components/common';
 import { cn } from '@/utils/helpers';
+
+// Subtle 3D tilt that tracks the cursor - lightweight alternative to a WebGL scene
+const TiltCard = ({ children, onMouseEnter, onMouseLeave }) => {
+  const ref = useRef(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [8, -8]), { stiffness: 300, damping: 30 });
+  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-8, 8]), { stiffness: 300, damping: 30 });
+
+  const handleMouseMove = (e) => {
+    const rect = ref.current.getBoundingClientRect();
+    x.set((e.clientX - rect.left) / rect.width - 0.5);
+    y.set((e.clientY - rect.top) / rect.height - 0.5);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+    onMouseLeave?.();
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      layout
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.4 }}
+      style={{ rotateX, rotateY, transformPerspective: 1000 }}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className="group relative h-full will-change-transform"
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 const PortfolioSection = () => {
   const { getPortfolio } = useCMS();
@@ -75,10 +114,10 @@ const PortfolioSection = () => {
       <div className="container-custom relative">
         {/* Section Header */}
         <SectionTitle
-          subtitle="Our Portfolio"
-          decorativeText="Gallery"
-          title="Beautiful Love Stories"
-          description="Browse through our collection of timeless wedding photographs capturing the most precious moments."
+          subtitle="Featured Stories"
+          decorativeText="Portfolio"
+          title="Stories We've Kept"
+          description="A curated collection of weddings, cultural celebrations, and brand moments remembered through film and frame."
         />
 
         {/* Portfolio Grid */}
@@ -95,23 +134,18 @@ const PortfolioSection = () => {
                   key={item.id}
                   className={cn(isLarge && 'md:row-span-2')}
                 >
-                  <motion.div
-                    layout
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.4 }}
-                    className="group relative h-full"
+                  <TiltCard
                     onMouseEnter={() => setHoveredId(item.id)}
                     onMouseLeave={() => setHoveredId(null)}
                   >
                     {/* Image Container */}
                     <div
                       className={cn(
-                        'relative overflow-hidden rounded-2xl cursor-pointer',
+                        'relative overflow-hidden rounded-2xl cursor-pointer shadow-lg group-hover:shadow-2xl group-hover:shadow-primary-900/30 transition-shadow duration-500',
                         isLarge ? 'aspect-[3/5]' : 'aspect-[3/4]'
                       )}
                       onClick={() => openLightbox(item)}
+                      style={{ transform: 'translateZ(20px)' }}
                     >
                       <OptimizedImage
                         src={item.image}
@@ -166,7 +200,7 @@ const PortfolioSection = () => {
                         {item.names}
                       </h3>
                     </div>
-                  </motion.div>
+                  </TiltCard>
                 </StaggerItem>
               );
             })}
@@ -188,7 +222,7 @@ const PortfolioSection = () => {
             iconPosition="right"
             onClick={() => window.location.href = '/gallery'}
           >
-            View Full Gallery
+            See More Stories
           </Button>
         </motion.div>
       </div>

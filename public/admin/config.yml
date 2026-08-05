@@ -42,6 +42,33 @@ collections:
           - { name: "email", label: "Email", widget: "string" }
           - { name: "phone", label: "Phone", widget: "string" }
           - { name: "address", label: "Address", widget: "text" }
+          - name: "logoLight"
+            label: "Logo (on transparent/dark header)"
+            widget: "image"
+            required: false
+            hint: "Shown when the header is transparent, e.g. at the top of the homepage."
+          - name: "logoDark"
+            label: "Logo (on white/scrolled header)"
+            widget: "image"
+            required: false
+            hint: "Shown once the header turns white on scroll, or on inner pages."
+          - { name: "logoLightHeight", label: "Logo Height - Transparent Header (px)", widget: "number", default: 40, required: false }
+          - { name: "logoDarkHeight", label: "Logo Height - White Header (px)", widget: "number", default: 40, required: false }
+          - name: "logoFooter"
+            label: "Logo (footer)"
+            widget: "image"
+            required: false
+          - name: "favicon"
+            label: "Favicon / Browser Tab Icon"
+            widget: "image"
+            required: false
+          - name: "colors"
+            label: "🎨 Brand Colors"
+            widget: "object"
+            required: false
+            hint: "Changing the primary color instantly re-themes buttons, links and accents across the whole site."
+            fields:
+              - { name: "primary", label: "Primary Brand Color", widget: "color", default: "#A00000" }
           - name: "social"
             label: "Social Media"
             widget: "object"

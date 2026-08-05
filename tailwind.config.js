@@ -7,18 +7,22 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Brand color, driven at runtime by CMS "colors.primary" via CSS vars
+        // (see src/utils/colorTheme.js + src/styles/index.css :root).
+        // The rgb()/<alpha-value> form keeps opacity modifiers like
+        // bg-primary-500/20 working even though the value is dynamic.
         primary: {
-          50: '#f0f7f4',
-          100: '#dbefe5',
-          200: '#b9dfcd',
-          300: '#8ac8ac',
-          400: '#59ab88',
-          500: '#388f6b',
-          600: '#287255',
-          700: '#215c45',
-          800: '#1c4a39',
-          900: '#001b0e',
-          950: '#000d07',
+          50: 'rgb(var(--color-primary-50-rgb) / <alpha-value>)',
+          100: 'rgb(var(--color-primary-100-rgb) / <alpha-value>)',
+          200: 'rgb(var(--color-primary-200-rgb) / <alpha-value>)',
+          300: 'rgb(var(--color-primary-300-rgb) / <alpha-value>)',
+          400: 'rgb(var(--color-primary-400-rgb) / <alpha-value>)',
+          500: 'rgb(var(--color-primary-500-rgb) / <alpha-value>)',
+          600: 'rgb(var(--color-primary-600-rgb) / <alpha-value>)',
+          700: 'rgb(var(--color-primary-700-rgb) / <alpha-value>)',
+          800: 'rgb(var(--color-primary-800-rgb) / <alpha-value>)',
+          900: 'rgb(var(--color-primary-900-rgb) / <alpha-value>)',
+          950: 'rgb(var(--color-primary-950-rgb) / <alpha-value>)',
         },
         dark: {
           50: '#f7f7f8',

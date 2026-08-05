@@ -1,18 +1,21 @@
 {
-  "logoDark": "/image/luxie-logo-white.webp",
-  "logoFooter": "/image/cropped-luxie-logo-white-1.webp",
-  "logoDarkHeight": 24,
-  "logoLight": "/image/cropped-luxie-logo-white-1.webp",
+  "logoDark": "/image/logo-dark-v2.png",
+  "logoFooter": "/image/logo-red-v2.png",
+  "logoDarkHeight": 44,
+  "logoLight": "/image/logo-red-v2.png",
   "social": {
-    "instagram": "https://www.instagram.com/luxiephoto/",
+    "instagram": "https://www.instagram.com/houseofechoes/",
     "facebook": "",
-    "whatsapp": "6282169990088"
+    "whatsapp": "+91 78784 91264"
   },
-  "phone": "+6282169990088",
-  "tagline": "We Don't Live Forever. Memories Do.",
-  "siteName": "Luxie Photo",
-  "logoLightHeight": 24,
-  "favicon": "/image/cropped-luxie-logo-white-1.webp",
-  "address": "Jl. Hibah Ibrahim No.21, Rw. Sari, Kec. Kota Baru, Kota Jambi, Jambi 36361",
-  "email": "admin@luxiephoto.com"
+  "phone": "+91-98765-43210",
+  "tagline": "Cinematic Wedding Photography & Event Management, Pan-India",
+  "siteName": "House of Echoes",
+  "logoLightHeight": 44,
+  "favicon": "/image/logo-dark-v2.png",
+  "address": "Pan-India service area for weddings, corporate events, and cultural celebrations",
+  "email": "hello@houseofechoes.com",
+  "colors": {
+    "primary": "#A00000"
+  }
 }

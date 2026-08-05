@@ -1,83 +1,102 @@
 {
   "items": [
     {
-      "id": "arthur-linda",
-      "names": "Arthur & Linda",
+      "id": "our-work",
+      "names": "Our Work",
       "category": "Wedding",
-      "location": "Bali, Indonesia",
-      "description": "An intimate garden ceremony filled with timeless elegance and heartfelt moments.",
+      "location": "India",
+      "description": "A look at real weddings and celebrations we've recently covered — captured as they happened, no two moments alike.",
+      "image": "/image/gallery/work-01.jpg",
+      "featured": true,
+      "gallery": [
+        "/image/gallery/work-01.jpg",
+        "/image/gallery/work-02.jpg",
+        "/image/gallery/work-03.jpg",
+        "/image/gallery/work-04.jpg",
+        "/image/gallery/work-05.jpg",
+        "/image/gallery/work-06.jpg",
+        "/image/gallery/work-07.jpg",
+        "/image/gallery/work-08.jpg",
+        "/image/gallery/work-09.jpg",
+        "/image/gallery/work-10.jpg",
+        "/image/gallery/work-11.jpg",
+        "/image/gallery/work-12.jpg",
+        "/image/gallery/work-13.jpg",
+        "/image/gallery/work-14.jpg",
+        "/image/gallery/work-15.jpg",
+        "/image/gallery/work-16.jpg",
+        "/image/gallery/work-17.jpg",
+        "/image/gallery/work-18.jpg"
+      ]
+    },
+    {
+      "id": "golden-hour",
+      "names": "Golden Hour",
+      "category": "Wedding",
+      "location": "Udaipur, Rajasthan",
+      "description": "A hilltop wedding, a sky that refused to stay one colour, and two families who became one before the sun went down.",
       "image": "/image/LUXIE_1.jpg",
       "featured": true,
       "gallery": [
         "/image/LUXIE_1.jpg",
         "/image/LUXIE_2.jpg",
-        "/image/LUXIE_3.jpg",
-        "/image/LUXIE_4.jpg"
+        "/image/LUXIE_3.jpg"
       ]
     },
     {
-      "id": "thomas-grace",
-      "names": "Thomas & Grace",
-      "category": "Beach Wedding",
-      "location": "Maldives",
-      "description": "A breathtaking sunset beach ceremony with golden hour perfection.",
+      "id": "quiet-vows",
+      "names": "Quiet Vows",
+      "category": "Wedding",
+      "location": "Jaipur, Rajasthan",
+      "description": "No grand stage, no thousand guests — just a courtyard, a few close hearts, and vows that didn't need an audience to matter.",
       "image": "/image/LUXIE_5.jpg",
       "featured": true,
       "gallery": [
         "/image/LUXIE_5.jpg",
         "/image/LUXIE_6.jpg",
-        "/image/LUXIE_7.jpg",
-        "/image/LUXIE_8.jpg",
-        "/image/LUXIE_9.jpg"
+        "/image/LUXIE_7.jpg"
       ]
     },
     {
-      "id": "michael-gina",
-      "names": "Michael & Gina",
-      "category": "Rustic Wedding",
-      "location": "Tuscany, Italy",
-      "description": "Rustic vineyard romance with rolling hills as the backdrop.",
+      "id": "boardroom-bright",
+      "names": "Boardroom Bright",
+      "category": "Corporate Event",
+      "location": "Mumbai, Maharashtra",
+      "description": "A product launch that felt more like a celebration — because the best corporate events aren't about the brand, they're about the people behind it.",
       "image": "/image/LUXIE_10.jpg",
       "featured": true,
       "gallery": [
         "/image/LUXIE_10.jpg",
         "/image/LUXIE_11.jpg",
-        "/image/LUXIE_12.jpg",
-        "/image/LUXIE_13.jpg",
-        "/image/LUXIE_14.jpg"
+        "/image/LUXIE_12.jpg"
       ]
     },
     {
-      "id": "freddie-aida",
-      "names": "Freddie & Aida",
-      "category": "Garden Wedding",
-      "location": "Singapore",
-      "description": "A lush botanical garden celebration surrounded by natural beauty.",
+      "id": "festival-threads",
+      "names": "Festival Threads",
+      "category": "Cultural Celebration",
+      "location": "Varanasi, Uttar Pradesh",
+      "description": "Colours, chants, and a community that's celebrated this festival for generations — we simply made sure it's remembered for one more.",
       "image": "/image/LUXIE_15.jpg",
       "featured": false,
       "gallery": [
         "/image/LUXIE_15.jpg",
         "/image/LUXIE_16.jpg",
-        "/image/LUXIE_17.jpg",
-        "/image/LUXIE_18.jpg",
-        "/image/LUXIE_19.jpg"
+        "/image/LUXIE_17.jpg"
       ]
     },
     {
-      "id": "chesa-kelvin",
-      "names": "Chesa & Kelvin",
-      "category": "Luxury Wedding",
-      "location": "Jakarta, Indonesia",
-      "description": "An elegant luxury wedding celebration with stunning décor and unforgettable moments.",
+      "id": "palace-afterglow",
+      "names": "Palace Afterglow",
+      "category": "Destination Wedding",
+      "location": "Udaipur, Rajasthan",
+      "description": "A three-day celebration in a palace, captured through candlelit ceremonies, intimate vows, and late-night dance floors.",
       "image": "/image/LUXIE_20.jpg",
       "featured": true,
       "gallery": [
         "/image/LUXIE_20.jpg",
         "/image/LUXIE_21.jpg",
-        "/image/LUXIE_22.jpg",
-        "/image/LUXIE_23.jpg",
-        "/image/LUXIE_24.jpg",
-        "/image/LUXIE_25.jpg"
+        "/image/LUXIE_22.jpg"
       ]
     }
   ]

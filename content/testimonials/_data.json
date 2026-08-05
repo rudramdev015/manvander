@@ -1,32 +1,32 @@
 {
   "items": [
     {
-      "id": "arthur-linda",
-      "names": "Arthur & Linda",
+      "id": "aarav-meera",
+      "names": "Aarav & Meera",
       "role": "Bride & Groom",
       "rating": 5,
-      "text": "I can't begin to express how truly grateful we are for LuxiePhoto and their incredible talent. From the very first moment, we knew we were in great hands. The entire experience was exceptional.",
-      "location": "Bali Wedding",
+      "text": "Every moment felt cinematic, intimate, and deeply personal. House of Echoes didn't just document our wedding — they made us feel it all over again.",
+      "location": "Jaipur Wedding",
       "avatar": "/image/LUXIE_4.jpg",
       "image": "/image/LUXIE_1.jpg"
     },
     {
-      "id": "freddie-aida",
-      "names": "Freddie & Aida",
-      "role": "Bride & Groom",
+      "id": "ritika-sharma",
+      "names": "Ritika Sharma",
+      "role": "Brand Lead",
       "rating": 5,
-      "text": "LuxiePhoto beautifully captured every emotion on our wedding day, from happy tears to laughter. Looking through our photos is like reliving the day over and over. Their style is both elegant and candid.",
-      "location": "Singapore Wedding",
+      "text": "Our product launch felt polished, warm, and alive on screen. The team brought the same care and cinematic brilliance to our corporate event that they bring to weddings.",
+      "location": "Mumbai Corporate Event",
       "avatar": "/image/LUXIE_6.jpg",
       "image": "/image/LUXIE_15.jpg"
     },
     {
-      "id": "robbie-maggie",
-      "names": "Robbie & Maggie",
+      "id": "nikhil-priya",
+      "names": "Nikhil & Priya",
       "role": "Bride & Groom",
       "rating": 5,
-      "text": "Wow, we are both blown away! These photos are absolutely beautiful. Thank you so much for capturing our wedding day. You've captured every precious moment in stunning detail. We can't thank you enough.",
-      "location": "Paris Wedding",
+      "text": "The wedding film feels like a memory we can hold in our hands. House of Echoes captured the emotion, the movement, and the soul of our celebration beautifully.",
+      "location": "Udaipur Wedding",
       "avatar": "/image/LUXIE_2.jpg",
       "image": "/image/LUXIE_3.jpg"
     }

@@ -1,27 +1,38 @@
 {
   "badge": {
-    "number": "5+",
-    "label": "Years"
+    "number": "2026",
+    "label": "Since"
   },
-  "ctaLink": "https://wa.me/6282169990088?text=Halo,%20saya%20tertarik%20untuk%20mengetahui%20lebih%20lanjut%20tentang%20layanan%20LuxiePhoto",
-  "badgeNumber": "15+",
-  "decorativeText": "Our Story",
-  "signatureRole": "Lead Photographer",
+  "ctaLink": "https://wa.me/919876543210?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20House%20of%20Echoes",
+  "decorativeText": "Quiet Beginnings",
+  "signatureRole": "Event Management & Cinematic Coverage",
   "cta": {
-    "text": "Find us!",
-    "link": "https://wa.me/6282169990088?text=Halo,%20saya%20tertarik%20untuk%20mengetahui%20lebih%20lanjut%20tentang%20layanan%20LuxiePhoto"
+    "text": "Enquire Now",
+    "link": "https://wa.me/919876543210?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20House%20of%20Echoes"
   },
-  "badgeLabel": "YEARS",
-  "subtitle": "OUR STORIES",
-  "signature": "Luxie Photo",
-  "title": "We Believe in Meaningful Moments and Memorable Experiences",
+  "subtitle": "About House of Echoes",
+  "signature": "House of Echoes",
+  "title": "Quiet Beginnings",
   "images": [
     "/image/LUXIE_11.jpg",
     "/image/LUXIE_12.jpg",
     "/image/LUXIE_29.jpg",
     "/image/LUXIE_30.jpg"
   ],
-  "description": "With over 5 years of experience, we've had the privilege of capturing hundreds of beautiful love stories. Our approach combines artistic vision with genuine emotion, ensuring every photograph reflects the authentic beauty of your special day.",
-  "features": [],
-  "ctaText": "Learn More"
+  "description": "House of Echoes began with a simple belief — that the best stories aren't told, they're felt. What started as a small team chasing candid moments at weddings has grown into a full-service event management and cinematic coverage company working across India, handling everything from pre-wedding shoots and wedding films to corporate event photography and cultural celebration coverage.",
+  "features": [
+    {
+      "title": "Pan-India Reach",
+      "description": "From metros to hill stations to hometown courtyards, we travel wherever your story is."
+    },
+    {
+      "title": "End-to-End Event Management",
+      "description": "Photography, films, and full event execution under one roof."
+    },
+    {
+      "title": "Cinematic, Not Staged",
+      "description": "Our style favours real moments over rehearsed poses."
+    }
+  ],
+  "ctaText": "Enquire Now"
 }

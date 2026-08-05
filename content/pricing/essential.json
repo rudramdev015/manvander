@@ -1,25 +1,23 @@
 {
   "period": "per event",
-  "price": 12900000,
-  "name": "Essential",
+  "price": 150000,
+  "name": "Stories Start Here",
   "order": 1,
   "notIncluded": [
-    "Second Photographer",
-    "Videography",
-    "Album"
+    "Full Event Management",
+    "Drone Coverage",
+    "Same-Day Edit"
   ],
-  "currency": "Rp",
-  "subtitle": "Perfect for intimate ceremonies",
+  "currency": "₹",
+  "subtitle": "Perfect for intimate weddings and curated shoots",
   "popular": false,
   "id": "essential",
   "features": [
-    "4 Hours Coverage",
-    "1 Professional Photographer",
-    "200+ Edited Photos",
-    "Online Gallery",
-    "Print Release",
-    "Engagement Session"
+    "Wedding photography coverage",
+    "Edited gallery delivery",
+    "Candid storytelling",
+    "Online gallery access"
   ],
-  "ctaText": "Choose Essential",
-  "ctaLink": "https://wa.me/6282169990088?text=Halo, saya tertarik dengan paket Essential"
+  "ctaText": "Enquire Now",
+  "ctaLink": "https://wa.me/919876543210?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20the%20Stories%20Start%20Here%20package"
 }

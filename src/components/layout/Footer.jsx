@@ -137,22 +137,20 @@ const Footer = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             {/* Brand Column */}
             <motion.div variants={itemVariants} className="lg:col-span-1">
-              <Link to="/" className="inline-block mb-6">
-                {settings?.logoFooter ? (
-                  <img 
-                    src={settings.logoFooter} 
-                    alt={settings?.siteName || 'LuxiePhoto'}
+              <Link to="/" className="inline-flex items-center gap-3 mb-6">
+                {settings?.logoFooter && (
+                  <img
+                    src={settings.logoFooter}
+                    alt={settings?.siteName || 'House of Echoes'}
                     className="h-12 w-auto object-contain"
                   />
-                ) : (
-                  <span className="font-serif text-3xl italic text-white">
-                    Luxie<span className="text-primary-500">Photo</span>
-                  </span>
                 )}
+                <span className="font-serif text-3xl italic text-white">
+                  House<span className="text-primary-500"> of Echoes</span>
+                </span>
               </Link>
               <p className="text-gray-400 text-sm leading-relaxed mb-6">
-                Capturing timeless moments and transforming them into beautiful memories. 
-                Your story deserves to be told beautifully.
+                House of Echoes is a pan-India event management and cinematic coverage studio, crafting weddings, celebrations, and moments into films and frames that outlive the day itself.
               </p>
               
               {/* Social Links */}
@@ -242,14 +240,14 @@ const Footer = () => {
         <div className="container-custom py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-500 text-sm flex items-center gap-1">
-              © {currentYear} LuxiePhoto. Made by{' '}
+              © {currentYear} House of Echoes. Made by{' '}
               <a 
                 href="https://www.calius.digital/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-primary-400 hover:text-primary-500 transition-colors font-medium"
               >
-                Calius Digital
+                House of Echoes
               </a>
             </p>
             <div className="flex items-center space-x-6">

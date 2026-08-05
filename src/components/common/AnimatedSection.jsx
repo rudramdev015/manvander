@@ -116,12 +116,12 @@ export const StaggerContainer = ({
 /**
  * StaggerItem Component - Children of StaggerContainer
  */
-export const StaggerItem = ({
+export const StaggerItem = forwardRef(({
   children,
   className = '',
   animation = 'fadeInUp',
   ...props
-}) => {
+}, ref) => {
   const animations = {
     fadeIn: {
       hidden: { opacity: 0 },
@@ -151,6 +151,7 @@ export const StaggerItem = ({
 
   return (
     <motion.div
+      ref={ref}
       className={cn(className)}
       variants={animations[animation] || animations.fadeInUp}
       transition={{
@@ -162,6 +163,8 @@ export const StaggerItem = ({
       {children}
     </motion.div>
   );
-};
+});
+
+StaggerItem.displayName = 'StaggerItem';
 
 export default AnimatedSection;
