@@ -1,0 +1,11 @@
+{
+  "id": "wedding-planning-management",
+  "order": 1,
+  "title": "Wedding Planning & Management",
+  "intro": "End-to-end wedding planning for families who want nothing left to chance.",
+  "tagGroups": [
+    ["Haldi", "Mehendi", "Sangeet", "Cocktail", "Wedding Day", "Reception"],
+    ["Decor", "Catering", "Logistics", "Vendor Management", "On-ground Coordination"]
+  ],
+  "closing": "We plan. We manage. We deliver.\nSo you can be present for every moment instead of running it."
+}

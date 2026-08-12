@@ -42,5 +42,6 @@ sanity-studio/dist/
 .vercel
 .env*.local
 
-# Raw uncompressed photo dumps (compressed versions live in public/image/gallery)
+# Raw uncompressed photo/video dumps (compressed versions live in public/image and public/video)
 iamges2/
+trusted by/

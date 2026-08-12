@@ -1,0 +1,10 @@
+{
+  "id": "corporate-events",
+  "order": 3,
+  "title": "Corporate Events",
+  "intro": "Your brand has a story. Your events should tell it.",
+  "tagGroups": [
+    ["Conferences", "Product Launches", "Brand Activations", "Award Nights", "Team Events"]
+  ],
+  "closing": "End-to-end planning, professional coverage, and content creation — built to reflect the identity of your organisation."
+}

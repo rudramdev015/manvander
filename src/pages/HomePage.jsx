@@ -5,14 +5,16 @@ import {
   HeroSection,
   IntroSection,
   AboutSection,
+  ServicesSection,
   JourneySection,
   PortfolioSection,
   GallerySection,
   WhyChooseUsSection,
-  PartnersSection,
+  TrustedBySection,
   TestimonialsSection,
   FAQSection,
   ContactSection,
+  FollowAlongSection,
 } from '@/components/sections';
 
 const HomePage = () => {
@@ -51,9 +53,14 @@ const HomePage = () => {
         {/* Intro - Editorial statement paragraph, accent font */}
         <IntroSection />
 
-        {/* About - Who we are & services */}
+        {/* About - Who we are */}
         <section id="about">
           <AboutSection />
+        </section>
+
+        {/* Services - What we offer */}
+        <section id="services">
+          <ServicesSection />
         </section>
 
         {/* Journey - Stats so far */}
@@ -72,8 +79,8 @@ const HomePage = () => {
         {/* Why Choose Us - USPs */}
         <WhyChooseUsSection />
 
-        {/* Partners - Trusted by */}
-        <PartnersSection />
+        {/* Trusted By - real couples */}
+        <TrustedBySection />
 
         {/* Testimonials - Social proof */}
         <section id="testimonials">
@@ -87,8 +94,11 @@ const HomePage = () => {
         <section id="contact">
           <ContactSection />
         </section>
+
+        {/* Follow Along - Instagram CTA */}
+        <FollowAlongSection />
       </main>
-      
+
       <Footer />
     </motion.div>
   );

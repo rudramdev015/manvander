@@ -23,6 +23,9 @@ import testimonialsDataFile from '../../content/testimonials/_data.json';
 // Import FAQs from _data.json
 import faqDataFile from '../../content/faq/_data.json';
 
+// Import Trusted By from _data.json
+import trustedByDataFile from '../../content/trusted-by/_data.json';
+
 // Services, Pricing and Partners are each one file per item (folder-based CMS
 // collections). Glob-import every file in the folder instead of naming each
 // one, so a new service/plan/partner added from the CMS admin shows up on
@@ -68,7 +71,8 @@ const initialContent = {
   pricing: pricingData || [],
   partners: partnersData || [],
   gallery: galleryData || [],
-  faq: faqData || []
+  faq: faqData || [],
+  trustedBy: trustedByDataFile || { items: [] }
 };
 
 export function CMSProvider({ children }) {
@@ -149,6 +153,13 @@ export function CMSProvider({ children }) {
     getPartners: () => {
       const partners = content?.partners || mockData.partners || [];
       return [...partners].sort((a, b) => (a.order || 0) - (b.order || 0));
+    },
+
+    // Trusted By - real couples with photos, sorted by order
+    getTrustedBy: () => {
+      const trustedBy = content?.trustedBy || { title: 'Trusted By', items: [] };
+      const items = [...(trustedBy.items || [])].sort((a, b) => (a.order || 0) - (b.order || 0));
+      return { ...trustedBy, items };
     },
     
     // Pricing - sorted by order, always returns array

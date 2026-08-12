@@ -72,6 +72,9 @@ export default {
         // free for commercial use) stand-in for the custom display font
         // reelsandframes.in uses in the same spot.
         accent: ['Quicksand', 'system-ui', 'sans-serif'],
+        // Tall condensed display face for big statement headers (e.g. the
+        // "TRUSTED BY" title) - free, SIL OFL licensed via Google Fonts.
+        display: ['"Six Caps"', 'Impact', 'sans-serif'],
       },
       fontSize: {
         'display-xl': ['7rem', { lineHeight: '1.1', letterSpacing: '-0.02em' }],

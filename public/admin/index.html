@@ -99,7 +99,15 @@
                 fields: [
                   { name: 'subtitle', label: 'Subtitle', widget: 'string', default: 'We Don\'t Live Forever. Memories Do.' },
                   { name: 'title', label: 'Title (Judul Utama)', widget: 'string', default: 'Timeless Moments.' },
-                  { name: 'backgroundImages', label: 'Background Images', widget: 'list', required: false, field: { name: 'image', label: 'Image', widget: 'image' } }
+                  {
+                    name: 'backgroundVideo', label: '🎬 Background Video (overrides the image slideshow if set)', widget: 'object', required: false,
+                    fields: [
+                      { name: 'mp4', label: 'Video (MP4)', widget: 'file', required: false, hint: 'Keep this under ~15MB and compressed (e.g. 720p, no audio) so the hero still loads fast.' },
+                      { name: 'webm', label: 'Video (WebM, optional)', widget: 'file', required: false, hint: 'Smaller alternate format some browsers prefer. Optional.' }
+                    ]
+                  },
+                  { name: 'videoPoster', label: 'Video Poster Image', widget: 'image', required: false, hint: 'Shown instantly while the video loads in the background - pick a striking frame.' },
+                  { name: 'backgroundImages', label: 'Background Images (used when there is no video)', widget: 'list', required: false, field: { name: 'image', label: 'Image', widget: 'image' } }
                 ]
               }
             ]
@@ -337,12 +345,37 @@
             extension: 'json',
             format: 'json',
             fields: [
-              { name: 'id', label: 'ID (unique)', widget: 'string', hint: 'ID unik untuk service, contoh: wedding-photography' },
-              { name: 'title', label: 'Service Title', widget: 'string' },
-              { name: 'icon', label: 'Icon', widget: 'select', options: ['Camera', 'Video', 'Brush', 'Heart'], default: 'Camera' },
-              { name: 'description', label: 'Description', widget: 'text' },
+              { name: 'id', label: 'ID (unique)', widget: 'string', hint: 'Unique id, e.g. wedding-planning-management' },
               { name: 'order', label: 'Display Order', widget: 'number', default: 1 },
-              { name: 'features', label: 'Features', widget: 'list', required: false, field: { name: 'feature', label: 'Feature', widget: 'string' } }
+              { name: 'title', label: 'Service Title', widget: 'string' },
+              { name: 'intro', label: 'Intro Line', widget: 'text' },
+              {
+                name: 'tagGroups', label: 'Tag Groups', widget: 'list', hint: 'One or more rows of short tags shown as pills, e.g. Haldi / Mehendi / Sangeet',
+                field: { name: 'group', label: 'Tag Row', widget: 'list', field: { name: 'tag', label: 'Tag', widget: 'string' } }
+              },
+              { name: 'closing', label: 'Closing Statement', widget: 'text', required: false, hint: 'Shown in italics under the tags. Use a blank line to break into two lines.' }
+            ]
+          },
+          {
+            name: 'trusted-by',
+            label: '💍 Trusted By',
+            files: [
+              {
+                name: 'trusted-by-data',
+                label: 'Trusted By Content',
+                file: 'content/trusted-by/_data.json',
+                fields: [
+                  { name: 'title', label: 'Section Title', widget: 'string', default: 'Trusted By' },
+                  {
+                    name: 'items', label: 'Couples', widget: 'list', summary: '{{fields.names}}', fields: [
+                      { name: 'id', label: 'ID (unique)', widget: 'string' },
+                      { name: 'names', label: 'Names', widget: 'string', hint: 'e.g. Tanvi & Anmol' },
+                      { name: 'image', label: 'Photo', widget: 'image' },
+                      { name: 'order', label: 'Display Order', widget: 'number', default: 1 }
+                    ]
+                  }
+                ]
+              }
             ]
           },
           {

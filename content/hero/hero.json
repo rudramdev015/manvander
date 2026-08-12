@@ -4,6 +4,11 @@
   "description": "We are House of Echoes — a full-spectrum event management and cinematic wedding photography studio based out of India, telling stories across weddings, pre-wedding shoots, corporate events, and cultural celebrations.",
   "ctaText": "Enquire Now",
   "ctaSecondaryText": "View Our Work",
+  "backgroundVideo": {
+    "mp4": "/video/hero-final.mp4",
+    "webm": "/video/hero-final.webm"
+  },
+  "videoPoster": "/video/hero-poster.jpg",
   "backgroundImages": [
     "/image/LUXIE_18.jpg",
     "/image/LUXIE_20.jpg",

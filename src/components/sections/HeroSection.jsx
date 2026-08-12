@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useCMS } from '@/context/CMSContext';
@@ -10,6 +10,13 @@ const HeroSection = () => {
   const heroContent = getHero();
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  // The video element only gets a src once this flips true, so the poster
+  // image (already loaded via OptimizedImage's own priority path) is what
+  // paints first - the multi-MB video never competes for bandwidth during
+  // first paint. It then crossfades in once it's actually able to play.
+  const [videoRequested, setVideoRequested] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
+  const videoRef = useRef(null);
 
   const heroImages = heroContent?.backgroundImages || [
     '/image/LUXIE_13.jpg',
@@ -17,12 +24,24 @@ const HeroSection = () => {
     '/image/LUXIE_22.jpg',
   ];
 
+  const backgroundVideo = heroContent?.backgroundVideo;
+  const videoPoster = heroContent?.videoPoster || heroImages[0];
+
+  // Defer the video request to right after the hero has painted, instead
+  // of requesting it in the same tick as everything else.
   useEffect(() => {
+    if (!backgroundVideo?.mp4) return undefined;
+    const id = requestAnimationFrame(() => setVideoRequested(true));
+    return () => cancelAnimationFrame(id);
+  }, [backgroundVideo?.mp4]);
+
+  useEffect(() => {
+    if (backgroundVideo?.mp4) return undefined; // video handles its own loop
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
     }, 6000);
     return () => clearInterval(interval);
-  }, [heroImages.length]);
+  }, [heroImages.length, backgroundVideo?.mp4]);
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -34,24 +53,61 @@ const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
       <div className="absolute inset-0">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentImageIndex}
-            initial={{ opacity: 0, scale: 1.1 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1.5, ease: 'easeInOut' }}
-            className="absolute inset-0"
+        {/* Poster / slideshow layer - always the first thing painted */}
+        {backgroundVideo?.mp4 ? (
+          <OptimizedImage
+            src={videoPoster}
+            alt="Cinematic wedding and event coverage"
+            className="w-full h-full"
+            containerClassName="w-full h-full"
+            priority
+          />
+        ) : (
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentImageIndex}
+              initial={{ opacity: 0, scale: 1.1 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.5, ease: 'easeInOut' }}
+              className="absolute inset-0"
+            >
+              <OptimizedImage
+                src={heroImages[currentImageIndex]}
+                alt="Cinematic wedding and event coverage"
+                className="w-full h-full"
+                containerClassName="w-full h-full"
+                priority
+              />
+            </motion.div>
+          </AnimatePresence>
+        )}
+
+        {/* Video layer - src only attached after first paint, fades in
+            once it can actually play so there's never a blank/loading gap */}
+        {backgroundVideo?.mp4 && (
+          <motion.video
+            ref={videoRef}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: videoReady ? 1 : 0 }}
+            transition={{ duration: 0.8, ease: 'easeInOut' }}
+            className="absolute inset-0 w-full h-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="none"
+            poster={videoPoster}
+            onCanPlay={() => setVideoReady(true)}
           >
-            <OptimizedImage
-              src={heroImages[currentImageIndex]}
-              alt="Cinematic wedding and event coverage"
-              className="w-full h-full"
-              containerClassName="w-full h-full"
-              priority
-            />
-          </motion.div>
-        </AnimatePresence>
+            {videoRequested && backgroundVideo.webm && (
+              <source src={backgroundVideo.webm} type="video/webm" />
+            )}
+            {videoRequested && (
+              <source src={backgroundVideo.mp4} type="video/mp4" />
+            )}
+          </motion.video>
+        )}
 
         <div className="absolute inset-0 bg-dark-900/60" />
         <div className="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-transparent to-dark-900/40" />
@@ -136,20 +192,22 @@ const HeroSection = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-8 right-8 hidden lg:flex space-x-2">
-        {heroImages.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentImageIndex(index)}
-            className={cn(
-              'w-2 h-2 rounded-full transition-all duration-500',
-              currentImageIndex === index
-                ? 'w-6 bg-white/60'
-                : 'bg-white/20 hover:bg-white/40'
-            )}
-          />
-        ))}
-      </div>
+      {!backgroundVideo?.mp4 && (
+        <div className="absolute bottom-8 right-8 hidden lg:flex space-x-2">
+          {heroImages.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentImageIndex(index)}
+              className={cn(
+                'w-2 h-2 rounded-full transition-all duration-500',
+                currentImageIndex === index
+                  ? 'w-6 bg-white/60'
+                  : 'bg-white/20 hover:bg-white/40'
+              )}
+            />
+          ))}
+        </div>
+      )}
     </section>
   );
 };

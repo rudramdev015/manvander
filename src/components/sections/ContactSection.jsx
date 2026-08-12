@@ -2,18 +2,23 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { useCMS } from '@/context/CMSContext';
-import { SectionTitle, Button, OptimizedImage, AnimatedSection, StaggerContainer, StaggerItem } from '@/components/common';
+import { SectionTitle, Button, AnimatedSection, StaggerContainer, StaggerItem } from '@/components/common';
 import { isValidEmail } from '@/utils/helpers';
 
+const EVENT_TYPES = ['Wedding', 'Corporate', 'Live Show', 'Other'];
+const SERVICE_AREAS = ['Rajasthan', 'Bangalore', 'Delhi', 'Gurgaon', 'Haryana', 'Jammu & Kashmir', 'Himachal Pradesh'];
+
 const ContactSection = () => {
-  const { getContact, getSocialMedia } = useCMS();
+  const { getContact } = useCMS();
   const contactInfo = getContact();
-  const social = getSocialMedia();
-  
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
+    eventType: '',
+    eventDate: '',
+    location: '',
     message: '',
   });
   const [status, setStatus] = useState({ type: '', message: '' });
@@ -56,6 +61,9 @@ const ContactSection = () => {
           name: formData.name,
           email: formData.email,
           phone: formData.phone || 'Not provided',
+          event_type: formData.eventType || 'Not specified',
+          event_date: formData.eventDate || 'Not specified',
+          location: formData.location || 'Not specified',
           message: formData.message || 'No message',
         })
       });
@@ -68,6 +76,9 @@ const ContactSection = () => {
           name: '',
           email: '',
           phone: '',
+          eventType: '',
+          eventDate: '',
+          location: '',
           message: '',
         });
       } else {
@@ -157,6 +168,30 @@ const ContactSection = () => {
                 );
               })}
             </StaggerContainer>
+
+            {/* Service Areas */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mt-10 p-6 rounded-2xl bg-white shadow-soft"
+            >
+              <div className="flex items-baseline gap-2 mb-4">
+                <span className="font-serif text-3xl text-primary-500">37+</span>
+                <span className="text-gray-700 font-medium">Events Across India</span>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {SERVICE_AREAS.map((area) => (
+                  <span
+                    key={area}
+                    className="px-3 py-1 rounded-full bg-gray-50 border border-gray-200 text-gray-600 text-xs"
+                  >
+                    {area}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
           </AnimatedSection>
 
           {/* Right Content - Form */}
@@ -200,7 +235,7 @@ const ContactSection = () => {
                   </div>
                 </div>
 
-                {/* Phone Number */}
+                {/* Phone */}
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
                     Phone Number
@@ -212,14 +247,68 @@ const ContactSection = () => {
                     value={formData.phone}
                     onChange={handleChange}
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all"
-                    placeholder="+62 xxx xxxx xxxx"
+                    placeholder="+91 xxxxx xxxxx"
                   />
+                </div>
+
+                {/* Event Type & Date */}
+                <div className="grid sm:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="eventType" className="block text-sm font-medium text-gray-700 mb-2">
+                      Event Type
+                    </label>
+                    <select
+                      id="eventType"
+                      name="eventType"
+                      value={formData.eventType}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all bg-white"
+                    >
+                      <option value="">Select event type</option>
+                      {EVENT_TYPES.map((type) => (
+                        <option key={type} value={type}>{type}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label htmlFor="eventDate" className="block text-sm font-medium text-gray-700 mb-2">
+                      Event Date
+                    </label>
+                    <input
+                      type="date"
+                      id="eventDate"
+                      name="eventDate"
+                      value={formData.eventDate}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all"
+                    />
+                  </div>
+                </div>
+
+                {/* Location */}
+                <div>
+                  <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-2">
+                    Location
+                  </label>
+                  <select
+                    id="location"
+                    name="location"
+                    value={formData.location}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all bg-white"
+                  >
+                    <option value="">Select a location</option>
+                    {SERVICE_AREAS.map((area) => (
+                      <option key={area} value={area}>{area}</option>
+                    ))}
+                    <option value="Other">Other / Not listed</option>
+                  </select>
                 </div>
 
                 {/* Message */}
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                    Your Message
+                    Additional Details
                   </label>
                   <textarea
                     id="message"

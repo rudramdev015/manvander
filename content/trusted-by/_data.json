@@ -1,0 +1,23 @@
+{
+  "title": "Trusted By",
+  "items": [
+    {
+      "id": "tanvi-anmol",
+      "names": "Tanvi & Anmol",
+      "image": "/image/trusted-by/tanvi-anmol.jpg",
+      "order": 1
+    },
+    {
+      "id": "aman-gurbeer",
+      "names": "Aman & Gurbeer",
+      "image": "/image/trusted-by/aman-gurbeer.jpg",
+      "order": 2
+    },
+    {
+      "id": "gurhona-simar",
+      "names": "Gurhona & Simar",
+      "image": "/image/trusted-by/gurhona-simar.jpg",
+      "order": 3
+    }
+  ]
+}

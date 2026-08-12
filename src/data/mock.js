@@ -7,10 +7,15 @@ export const navigationLinks = [
     path: '#hero', 
     hasDropdown: false 
   },
-  { 
-    name: 'About', 
-    path: '#about', 
-    hasDropdown: false 
+  {
+    name: 'About',
+    path: '#about',
+    hasDropdown: false
+  },
+  {
+    name: 'Services',
+    path: '#services',
+    hasDropdown: false
   },
   {
     name: 'Portfolio',
