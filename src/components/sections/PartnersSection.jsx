@@ -30,18 +30,11 @@ const PartnersSection = () => {
               Collaboration
             </span>
             <h2 className="font-serif text-3xl md:text-4xl text-gray-900 -mt-4 relative z-10 mb-6">
-              Trusted Partners
+              Trusted By
             </h2>
-            <p className="text-gray-600 leading-relaxed mb-8">
-              We collaborate with the finest wedding vendors and venues to create unforgettable experiences for our couples.
+            <p className="text-gray-600 leading-relaxed">
+              House of Echoes has been trusted by families across India for their most important celebrations, and by growing brands for their most important milestones.
             </p>
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="px-6 py-3 border-2 border-dark-900 text-dark-900 text-sm tracking-wider uppercase font-medium hover:bg-dark-900 hover:text-white transition-all duration-300"
-            >
-              View All Partners
-            </motion.button>
           </motion.div>
 
           {/* Partners Marquee */}
@@ -110,41 +103,6 @@ const PartnersSection = () => {
           </div>
         </div>
       </div>
-
-      {/* Stats Bar */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="mt-20 border-t border-b border-gray-200 bg-white"
-      >
-        <div className="container-custom py-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              { number: '50+', label: 'Trusted Vendors' },
-              { number: '100+', label: 'Venues Worldwide' },
-              { number: '15', label: 'Countries Covered' },
-              { number: '500+', label: 'Events Together' },
-            ].map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <div className="font-serif text-4xl md:text-5xl text-primary-500 mb-2">
-                  {stat.number}
-                </div>
-                <div className="text-gray-600 text-sm uppercase tracking-wider">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.div>
     </section>
   );
 };

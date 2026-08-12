@@ -1,0 +1,27 @@
+{
+  "subtitle": "Why Us",
+  "decorativeText": "The Difference",
+  "title": "Why House of Echoes",
+  "items": [
+    {
+      "title": "Pan-India Reach",
+      "description": "From metros to hill stations to hometown courtyards, we travel wherever your story is."
+    },
+    {
+      "title": "End-to-End Event Management",
+      "description": "Photography, films, and full event execution under one roof."
+    },
+    {
+      "title": "Cinematic, Not Staged",
+      "description": "Our style favours real moments over rehearsed poses."
+    },
+    {
+      "title": "Corporate & Cultural Expertise",
+      "description": "Equally at home at a boardroom launch and a temple courtyard festival."
+    },
+    {
+      "title": "A Team That Listens First",
+      "description": "We build every shoot around your story, not a fixed formula."
+    }
+  ]
+}

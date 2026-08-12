@@ -67,6 +67,11 @@ export default {
       fontFamily: {
         serif: ['Playfair Display', 'Georgia', 'serif'],
         sans: ['Poppins', 'system-ui', '-apple-system', 'sans-serif'],
+        // Warm, rounded accent face for editorial/statement copy (e.g. the
+        // intro paragraph under the hero) - a properly-licensed (SIL OFL,
+        // free for commercial use) stand-in for the custom display font
+        // reelsandframes.in uses in the same spot.
+        accent: ['Quicksand', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         'display-xl': ['7rem', { lineHeight: '1.1', letterSpacing: '-0.02em' }],

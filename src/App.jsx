@@ -1,5 +1,5 @@
-import { Suspense, lazy } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Suspense, lazy, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { CMSProvider } from '@/context/CMSContext';
 import { DynamicFavicon, FloatingWhatsApp } from '@/components/common';
@@ -7,6 +7,7 @@ import { DynamicFavicon, FloatingWhatsApp } from '@/components/common';
 // Lazy load pages for code splitting
 const HomePage = lazy(() => import('@/pages/HomePage'));
 const GalleryPage = lazy(() => import('@/pages/GalleryPage'));
+const PortfolioDetailPage = lazy(() => import('@/pages/PortfolioDetailPage'));
 
 // Loading component
 const PageLoader = () => (
@@ -24,8 +25,17 @@ const PageLoader = () => (
   </div>
 );
 
-// Scroll to top component
+// Scroll to top on every route change (hash-only navigation on the
+// homepage, e.g. #portfolio, is left alone - see the hash check below)
 const ScrollToTop = () => {
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    if (!hash) {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, hash]);
+
   return null;
 };
 
@@ -41,6 +51,7 @@ function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/gallery" element={<GalleryPage />} />
+              <Route path="/portfolio/:id" element={<PortfolioDetailPage />} />
               {/* Future routes can be added here */}
               {/* <Route path="/about" element={<AboutPage />} /> */}
               {/* <Route path="/portfolio" element={<PortfolioPage />} /> */}

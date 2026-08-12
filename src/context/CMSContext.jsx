@@ -6,7 +6,10 @@ import * as mockData from '@/data/mock';
 
 // Import content from JSON files
 import heroContent from '../../content/hero/hero.json';
+import introContent from '../../content/intro/intro.json';
 import aboutContent from '../../content/about/about.json';
+import journeyContent from '../../content/journey/journey.json';
+import whyChooseUsContent from '../../content/why-choose-us/why-choose-us.json';
 import contactContent from '../../content/contact/contact.json';
 import settingsContent from '../../content/settings/general.json';
 import socialContent from '../../content/settings/social.json';
@@ -16,6 +19,9 @@ import portfolioDataFile from '../../content/portfolio/_data.json';
 
 // Import Testimonials from _data.json
 import testimonialsDataFile from '../../content/testimonials/_data.json';
+
+// Import FAQs from _data.json
+import faqDataFile from '../../content/faq/_data.json';
 
 // Services, Pricing and Partners are each one file per item (folder-based CMS
 // collections). Glob-import every file in the folder instead of naming each
@@ -27,26 +33,32 @@ import testimonialsDataFile from '../../content/testimonials/_data.json';
 const serviceModules = import.meta.glob('../../content/services/*.json', { eager: true });
 const pricingModules = import.meta.glob('../../content/pricing/*.json', { eager: true });
 const partnerModules = import.meta.glob('../../content/partners/*.json', { eager: true });
+const galleryModules = import.meta.glob('../../content/gallery/*.json', { eager: true });
 
 const notDataJson = ([path]) => !path.endsWith('/_data.json');
 const servicesData = Object.entries(serviceModules).filter(notDataJson).map(([, m]) => m.default ?? m);
 const pricingData = Object.entries(pricingModules).filter(notDataJson).map(([, m]) => m.default ?? m);
 const partnersData = Object.entries(partnerModules).filter(notDataJson).map(([, m]) => m.default ?? m);
+const galleryData = Object.entries(galleryModules).filter(notDataJson).map(([, m]) => m.default ?? m);
 
 // Extract items from data files (support both array format and {items: []} format)
 const portfolioData = Array.isArray(portfolioDataFile) 
   ? portfolioDataFile 
   : (portfolioDataFile?.items || []);
-const testimonialsData = Array.isArray(testimonialsDataFile) 
-  ? testimonialsDataFile 
+const testimonialsData = Array.isArray(testimonialsDataFile)
+  ? testimonialsDataFile
   : (testimonialsDataFile?.items || []);
+const faqData = Array.isArray(faqDataFile) ? faqDataFile : (faqDataFile?.items || []);
 
 const CMSContext = createContext(null);
 
 // Initialize content immediately to avoid null issues on first render
 const initialContent = {
   hero: heroContent,
+  intro: introContent,
   about: aboutContent,
+  journey: journeyContent,
+  whyChooseUs: whyChooseUsContent,
   contact: contactContent,
   settings: settingsContent,
   social: socialContent,
@@ -54,7 +66,9 @@ const initialContent = {
   portfolio: portfolioData || [],
   testimonials: testimonialsData || [],
   pricing: pricingData || [],
-  partners: partnersData || []
+  partners: partnersData || [],
+  gallery: galleryData || [],
+  faq: faqData || []
 };
 
 export function CMSProvider({ children }) {
@@ -102,8 +116,16 @@ export function CMSProvider({ children }) {
     },
     
     getHero: () => content?.hero || mockData.heroContent,
-    
+
+    getIntro: () => content?.intro || { text: '' },
+
     getAbout: () => content?.about || mockData.aboutContent,
+
+    getJourney: () => content?.journey || { stats: [] },
+
+    getWhyChooseUs: () => content?.whyChooseUs || { items: [] },
+
+    getFAQs: () => content?.faq || mockData.faqItems || [],
     
     // Services - sorted by order, always returns array
     getServices: () => {
@@ -135,6 +157,12 @@ export function CMSProvider({ children }) {
       return [...pricing].sort((a, b) => (a.order || 0) - (b.order || 0));
     },
     
+    // Gallery - photos & videos, sorted by order, always returns array
+    getGallery: (featuredOnly = false) => {
+      const gallery = [...(content?.gallery || [])].sort((a, b) => (a.order || 0) - (b.order || 0));
+      return featuredOnly ? gallery.filter(item => item.featured) : gallery;
+    },
+
     getContact: () => content?.contact || mockData.contactInfo,
     
     getFooter: () => ({

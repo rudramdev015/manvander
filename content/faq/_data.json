@@ -1,0 +1,34 @@
+{
+  "items": [
+    {
+      "id": "services-offered",
+      "question": "What services does House of Echoes offer?",
+      "answer": "We offer complete event management and cinematic coverage — wedding photography, wedding films, pre-wedding shoots, corporate event coverage, and cultural celebration photography — across India."
+    },
+    {
+      "id": "travel-outside-base",
+      "question": "Do you travel outside your base city for weddings?",
+      "answer": "Yes. House of Echoes operates pan-India and takes on destination weddings and events across the country."
+    },
+    {
+      "id": "booking-timeline",
+      "question": "How far in advance should we book House of Echoes?",
+      "answer": "We recommend booking 4–6 months in advance, especially for wedding season dates, to ensure availability and proper planning time."
+    },
+    {
+      "id": "corporate-events",
+      "question": "Do you handle corporate events as well as weddings?",
+      "answer": "Yes — alongside wedding and pre-wedding photography, we cover corporate events, product launches, and cultural celebrations with the same cinematic approach."
+    },
+    {
+      "id": "pricing",
+      "question": "How do you price your packages?",
+      "answer": "Pricing depends on the scope of the event, deliverables required, team size, and location. Reach out to us directly for a customized quote."
+    },
+    {
+      "id": "portfolio",
+      "question": "Where can I see more of your work?",
+      "answer": "Explore our Portfolio and Stories sections above, or follow us on Instagram @houseofechoes for regular updates."
+    }
+  ]
+}

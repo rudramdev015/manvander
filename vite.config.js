@@ -3,10 +3,30 @@ import react from '@vitejs/plugin-react';
 import compression from 'vite-plugin-compression';
 import path from 'path';
 
+// Vite's dev server only auto-resolves index.html at the site root, so
+// requests for /admin or /admin/ fall through to the SPA (React Router)
+// instead of the static Decap CMS app at public/admin/index.html. Static
+// hosts (Apache/Netlify/Vercel) resolve directory index files themselves,
+// which is why this only shows up in `npm run dev`.
+function serveAdminIndex() {
+  return {
+    name: 'serve-admin-index',
+    configureServer(server) {
+      server.middlewares.use((req, res, next) => {
+        if (req.url === '/admin' || req.url === '/admin/') {
+          req.url = '/admin/index.html';
+        }
+        next();
+      });
+    },
+  };
+}
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
+    serveAdminIndex(),
     // Gzip compression for production
     compression({
       algorithm: 'gzip',

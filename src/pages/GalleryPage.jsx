@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, MapPin, X, ChevronLeft, ChevronRight, Grid, LayoutGrid } from 'lucide-react';
 import { useCMS } from '@/context/CMSContext';
@@ -177,9 +178,17 @@ const GalleryPage = () => {
                       <span>{item.location}</span>
                     </div>
                   </div>
-                  <span className="text-sm text-primary-500 font-medium">
-                    {gallery.length} Photos
-                  </span>
+                  <div className="flex items-center gap-4">
+                    <span className="text-sm text-primary-500 font-medium hidden sm:inline">
+                      {gallery.length} Photos
+                    </span>
+                    <Link
+                      to={`/portfolio/${item.id}`}
+                      className="text-sm font-medium text-gray-700 hover:text-primary-500 border border-gray-200 hover:border-primary-500 rounded-full px-4 py-2 transition-colors whitespace-nowrap"
+                    >
+                      Full Story
+                    </Link>
+                  </div>
                 </div>
 
                 {/* Story Description */}

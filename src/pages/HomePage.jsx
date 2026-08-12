@@ -3,10 +3,15 @@ import { motion } from 'framer-motion';
 import { Header, Footer } from '@/components/layout';
 import {
   HeroSection,
+  IntroSection,
   AboutSection,
+  JourneySection,
   PortfolioSection,
+  GallerySection,
+  WhyChooseUsSection,
+  PartnersSection,
   TestimonialsSection,
-  PricingSection,
+  FAQSection,
   ContactSection,
 } from '@/components/sections';
 
@@ -42,27 +47,42 @@ const HomePage = () => {
         <section id="hero">
           <HeroSection />
         </section>
-        
+
+        {/* Intro - Editorial statement paragraph, accent font */}
+        <IntroSection />
+
         {/* About - Who we are & services */}
         <section id="about">
           <AboutSection />
         </section>
-        
+
+        {/* Journey - Stats so far */}
+        <JourneySection />
+
         {/* Portfolio - Gallery showcase */}
         <section id="portfolio">
           <PortfolioSection />
         </section>
-        
+
+        {/* Gallery - Mixed photos & videos */}
+        <section id="gallery">
+          <GallerySection />
+        </section>
+
+        {/* Why Choose Us - USPs */}
+        <WhyChooseUsSection />
+
+        {/* Partners - Trusted by */}
+        <PartnersSection />
+
         {/* Testimonials - Social proof */}
         <section id="testimonials">
           <TestimonialsSection />
         </section>
-        
-        {/* Pricing - Packages */}
-        <section id="pricing">
-          <PricingSection />
-        </section>
-        
+
+        {/* FAQ */}
+        <FAQSection />
+
         {/* Contact - Get in touch */}
         <section id="contact">
           <ContactSection />

@@ -51,7 +51,6 @@ const Footer = () => {
     { name: 'About Us', path: '#about' },
     { name: 'Portfolio', path: '#portfolio' },
     { name: 'Services', path: '#portfolio' },
-    { name: 'Pricing', path: '#pricing' },
     { name: 'Contact', path: '#contact' },
   ];
 

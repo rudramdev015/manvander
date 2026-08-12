@@ -12,18 +12,18 @@ export const navigationLinks = [
     path: '#about', 
     hasDropdown: false 
   },
-  { 
-    name: 'Portfolio', 
-    path: '#portfolio', 
-    hasDropdown: false 
+  {
+    name: 'Portfolio',
+    path: '#portfolio',
+    hasDropdown: false
   },
-  { 
-    name: 'Pricing', 
-    path: '#pricing', 
-    hasDropdown: false 
+  {
+    name: 'Gallery',
+    path: '#gallery',
+    hasDropdown: false
   },
-  { 
-    name: 'Testimonials', 
+  {
+    name: 'Testimonials',
     path: '#testimonials', 
     hasDropdown: false 
   },

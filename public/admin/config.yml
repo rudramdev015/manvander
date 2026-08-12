@@ -5,6 +5,13 @@ backend:
   base_url: https://luxiephoto.com
   auth_endpoint: /api/auth
 
+# Local backend: when the admin panel is opened on localhost, Decap CMS talks
+# to a local proxy server (run via `npm run cms`) instead of GitHub. Every
+# edit and image upload is written straight to the files on this machine --
+# no GitHub login, no OAuth, nothing leaves your computer. This has no effect
+# in production, where the `backend` block above (GitHub) is used instead.
+local_backend: true
+
 # Publish mode - Editorial Workflow (optional, remove if not needed)
 # publish_mode: editorial_workflow
 
@@ -178,6 +185,29 @@ collections:
                 widget: "list"
                 required: false
                 field: { name: "image", label: "Image", widget: "image" }
+
+  # ============================================
+  # GALLERY (Photos & Videos)
+  # ============================================
+  - name: "gallery"
+    label: "🖼️ Gallery"
+    folder: "content/gallery"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: "title"
+    summary: "{{title}} ({{mediaType}})"
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+      - { name: "mediaType", label: "Media Type", widget: "select", options: ["Photo", "Video"], default: "Photo", hint: "Choose Photo to show an image, or Video to embed a YouTube/Vimeo clip." }
+      - { name: "category", label: "Category", widget: "string", required: false, hint: "e.g. Wedding, Reception, Behind the Scenes" }
+      - name: "image"
+        label: "Photo"
+        widget: "image"
+        required: false
+        hint: "Required when Media Type is Photo. If Media Type is Video, this is used as the video thumbnail (optional)."
+      - { name: "videoUrl", label: "Video URL (YouTube or Vimeo)", widget: "string", required: false, hint: "Required when Media Type is Video. Paste the full YouTube or Vimeo link." }
+      - { name: "order", label: "Display Order", widget: "number", default: 1 }
+      - { name: "featured", label: "Featured", widget: "boolean", default: false }
 
   # ============================================
   # TESTIMONIALS (File-based - Single JSON Array)
