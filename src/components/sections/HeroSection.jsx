@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Play, X } from 'lucide-react';
 import { useCMS } from '@/context/CMSContext';
 import { OptimizedImage, Button } from '@/components/common';
 import { cn } from '@/utils/helpers';
+import { getVideoEmbedUrl } from '@/utils/video';
 
 const HeroSection = () => {
   const { getHero } = useCMS();
@@ -16,6 +17,7 @@ const HeroSection = () => {
   // first paint. It then crossfades in once it's actually able to play.
   const [videoRequested, setVideoRequested] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
+  const [showreelOpen, setShowreelOpen] = useState(false);
   const videoRef = useRef(null);
 
   const heroImages = heroContent?.backgroundImages || [
@@ -26,6 +28,7 @@ const HeroSection = () => {
 
   const backgroundVideo = heroContent?.backgroundVideo;
   const videoPoster = heroContent?.videoPoster || heroImages[0];
+  const showreelEmbedUrl = getVideoEmbedUrl(heroContent?.showreelUrl);
 
   // Defer the video request to right after the hero has painted, instead
   // of requesting it in the same tick as everything else.
@@ -184,11 +187,27 @@ const HeroSection = () => {
             <Button
               variant="outline-white"
               size="lg"
-              onClick={() => scrollToSection('portfolio')}
+              onClick={() => scrollToSection('trusted-by')}
             >
               {heroContent?.ctaSecondaryText || 'View Our Work'}
             </Button>
           </motion.div>
+
+          {showreelEmbedUrl && (
+            <motion.button
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.05 }}
+              onClick={() => setShowreelOpen(true)}
+              className="group mt-10 inline-flex items-center gap-3 text-white/80 hover:text-white transition-colors mx-auto"
+            >
+              <span className="relative w-14 h-14 rounded-full border border-white/40 flex items-center justify-center group-hover:border-white group-hover:bg-white/10 transition-all">
+                <span className="absolute inset-0 rounded-full bg-white/10 animate-pulse-slow" />
+                <Play className="w-5 h-5 ml-0.5 fill-current" />
+              </span>
+              <span className="text-sm tracking-widest uppercase">Watch Our Showreel</span>
+            </motion.button>
+          )}
         </div>
       </div>
 
@@ -208,6 +227,42 @@ const HeroSection = () => {
           ))}
         </div>
       )}
+
+      {/* Showreel lightbox */}
+      <AnimatePresence>
+        {showreelOpen && showreelEmbedUrl && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[60] bg-black/95 flex items-center justify-center p-4"
+            onClick={() => setShowreelOpen(false)}
+          >
+            <button
+              onClick={() => setShowreelOpen(false)}
+              className="absolute top-6 right-6 w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+              aria-label="Close showreel"
+            >
+              <X className="w-5 h-5" />
+            </button>
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="w-full max-w-5xl aspect-video"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <iframe
+                src={showreelEmbedUrl}
+                title="House of Echoes Showreel"
+                className="w-full h-full rounded-xl"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

@@ -6,12 +6,8 @@ import {
   IntroSection,
   AboutSection,
   ServicesSection,
-  JourneySection,
-  PortfolioSection,
-  GallerySection,
   WhyChooseUsSection,
   TrustedBySection,
-  TestimonialsSection,
   FAQSection,
   ContactSection,
   FollowAlongSection,
@@ -43,15 +39,20 @@ const HomePage = () => {
       className="min-h-screen"
     >
       <Header />
-      
+
       <main>
         {/* Hero - Full viewport intro with video */}
         <section id="hero">
           <HeroSection />
         </section>
 
-        {/* Intro - Editorial statement paragraph, accent font */}
+        {/* Intro - Editorial statement, 3 lines, accent font */}
         <IntroSection />
+
+        {/* Trusted By - real couples, right after the intro */}
+        <section id="trusted-by">
+          <TrustedBySection />
+        </section>
 
         {/* About - Who we are */}
         <section id="about">
@@ -63,29 +64,8 @@ const HomePage = () => {
           <ServicesSection />
         </section>
 
-        {/* Journey - Stats so far */}
-        <JourneySection />
-
-        {/* Portfolio - Gallery showcase */}
-        <section id="portfolio">
-          <PortfolioSection />
-        </section>
-
-        {/* Gallery - Mixed photos & videos */}
-        <section id="gallery">
-          <GallerySection />
-        </section>
-
         {/* Why Choose Us - USPs */}
         <WhyChooseUsSection />
-
-        {/* Trusted By - real couples */}
-        <TrustedBySection />
-
-        {/* Testimonials - Social proof */}
-        <section id="testimonials">
-          <TestimonialsSection />
-        </section>
 
         {/* FAQ */}
         <FAQSection />

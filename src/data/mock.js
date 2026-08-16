@@ -13,27 +13,17 @@ export const navigationLinks = [
     hasDropdown: false
   },
   {
+    name: 'Trusted By',
+    path: '#trusted-by',
+    hasDropdown: false
+  },
+  {
     name: 'Services',
     path: '#services',
     hasDropdown: false
   },
   {
-    name: 'Portfolio',
-    path: '#portfolio',
-    hasDropdown: false
-  },
-  {
-    name: 'Gallery',
-    path: '#gallery',
-    hasDropdown: false
-  },
-  {
-    name: 'Testimonials',
-    path: '#testimonials', 
-    hasDropdown: false 
-  },
-  { 
-    name: 'Contact', 
+    name: 'Contact',
     path: '#contact', 
     hasDropdown: false 
   }

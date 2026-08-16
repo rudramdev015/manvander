@@ -4,25 +4,21 @@ import { Instagram, ArrowUpRight } from 'lucide-react';
 import { useCMS } from '@/context/CMSContext';
 import { OptimizedImage } from '@/components/common';
 
-// A handful of real photos for the mosaic strip - pulled from the same
-// compressed set already used in the portfolio, so nothing new to load.
-const mosaicImages = [
-  '/image/gallery/work-03.jpg',
-  '/image/gallery/work-08.jpg',
-  '/image/gallery/work-11.jpg',
-  '/image/gallery/work-14.jpg',
-  '/image/gallery/work-17.jpg',
-  '/image/gallery/work-06.jpg',
-];
-
 /**
  * FollowAlongSection - Instagram follow CTA with a mosaic of real work,
- * sits right above the footer.
+ * sits right above the footer. The mosaic pulls straight from whatever
+ * photos are currently in Portfolio/Trusted By - edit those from the
+ * dashboard and this updates with them, no hardcoded image list to keep
+ * in sync by hand.
  */
 const FollowAlongSection = () => {
-  const { getSocialMedia, getSiteSettings } = useCMS();
+  const { getSocialMedia, getSiteSettings, getPortfolio, getTrustedBy } = useCMS();
   const social = getSocialMedia();
   const settings = getSiteSettings();
+
+  const portfolioPhotos = getPortfolio().flatMap((item) => item.gallery?.length ? item.gallery : [item.image]);
+  const trustedByPhotos = (getTrustedBy()?.items || []).map((item) => item.image);
+  const mosaicImages = [...portfolioPhotos, ...trustedByPhotos].filter(Boolean);
   const instagramUrl = social?.instagram || 'https://instagram.com/houseofechoes';
   const handle = instagramUrl.replace(/^https?:\/\/(www\.)?instagram\.com\//, '@').replace(/\/$/, '');
 

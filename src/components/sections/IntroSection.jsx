@@ -5,9 +5,9 @@ import { useCMS } from '@/context/CMSContext';
 /**
  * IntroSection - Editorial statement right under the hero, set in the warm
  * accent font so it reads distinctly from the rest of the page (mirrors the
- * intro-paragraph treatment on reelsandframes.in). Always exactly 3 lines,
- * each its own sentence, so the rhythm holds at any screen size instead of
- * reflowing as one long paragraph.
+ * intro-paragraph treatment on reelsandframes.in). Always exactly 3 fixed
+ * lines so the rhythm holds at any screen size instead of reflowing as one
+ * long paragraph.
  */
 const IntroSection = () => {
   const { getIntro } = useCMS();

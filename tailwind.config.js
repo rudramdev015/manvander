@@ -158,6 +158,8 @@ export default {
         xs: '2px',
       },
       boxShadow: {
+        'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -4px rgba(0, 0, 0, 0.05)',
+        'soft-xl': '0 20px 40px -8px rgba(0, 0, 0, 0.12)',
         'elegant': '0 10px 50px -12px rgba(0, 0, 0, 0.25)',
         'elegant-lg': '0 20px 70px -15px rgba(0, 0, 0, 0.3)',
         'inner-lg': 'inset 0 2px 10px 0 rgba(0, 0, 0, 0.1)',

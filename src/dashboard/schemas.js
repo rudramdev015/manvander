@@ -47,6 +47,7 @@ export const SECTION_SCHEMAS = {
       { name: 'description', label: 'Description', type: 'textarea' },
       { name: 'ctaText', label: 'Primary Button Text', type: 'text' },
       { name: 'ctaSecondaryText', label: 'Secondary Button Text', type: 'text' },
+      { name: 'showreelUrl', label: 'Showreel Video URL (YouTube or Vimeo)', type: 'text' },
       { name: 'videoPoster', label: 'Video Poster Image', type: 'image' },
       { name: 'backgroundVideo.mp4', label: 'Background Video (MP4)', type: 'video' },
       { name: 'backgroundVideo.webm', label: 'Background Video (WebM, optional)', type: 'video' },
