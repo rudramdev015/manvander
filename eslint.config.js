@@ -5,7 +5,7 @@ import reactRefresh from 'eslint-plugin-react-refresh';
 import react from 'eslint-plugin-react';
 
 export default [
-  { ignores: ['dist', 'node_modules', 'public', 'build'] },
+  { ignores: ['dist', 'node_modules', 'public', 'build', 'public_html', 'upload-to-cpanel', 'sanity-studio'] },
   {
     files: ['**/*.{js,jsx}'],
     languageOptions: {

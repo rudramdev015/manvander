@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { applyThemeColors, DEFAULT_BRAND_COLOR } from '@/utils/colorTheme';
+import { fetchAllSections, fetchItems, isApiConfigured } from '@/lib/api';
 
 // Default data (fallback)
 import * as mockData from '@/data/mock';
@@ -75,18 +76,93 @@ const initialContent = {
   trustedBy: trustedByDataFile || { items: [] }
 };
 
+// Section keys and item collections served by the Node/Mongo backend.
+// Kept separate from `initialContent`'s keys on purpose: `pricing` has no
+// live backend collection (the section was removed from the site), so it
+// stays on its static fallback only.
+const SECTION_KEYS = ['settings', 'social', 'hero', 'intro', 'about', 'journey', 'whyChooseUs', 'contact', 'trustedBy'];
+const ITEM_COLLECTIONS = ['services', 'portfolio', 'testimonials', 'partners', 'gallery', 'faq', 'trustedBy'];
+
 export function CMSProvider({ children }) {
   const [content, setContent] = useState(initialContent);
-  const [loading, setLoading] = useState(false);
+  // True only while the very first live fetch is in flight - lets the
+  // dashboard (or anything else) know a refresh is happening, without ever
+  // blocking the initial render, which always uses the static content
+  // baked into the build.
+  const [loading, setLoading] = useState(isApiConfigured());
 
   // Apply CMS colors as CSS variables (drives every primary-* Tailwind class)
   useEffect(() => {
     applyThemeColors(content?.settings?.colors || {});
   }, [content?.settings?.colors]);
 
+  // Fetches live data from the API and merges it into `content`. Used both
+  // on mount (stale-while-revalidate) and on-demand by the dashboard right
+  // after a save, so an editor sees their change reflected immediately.
+  async function refreshContent() {
+    if (!isApiConfigured()) return;
+
+    const [sectionsResult, ...itemResults] = await Promise.allSettled([
+      fetchAllSections(),
+      ...ITEM_COLLECTIONS.map((collection) => fetchItems(collection)),
+    ]);
+
+    setContent((prev) => {
+      const next = { ...prev };
+
+      if (sectionsResult.status === 'fulfilled') {
+        SECTION_KEYS.forEach((key) => {
+          if (sectionsResult.value?.[key] !== undefined) {
+            if (key === 'trustedBy') {
+              next.trustedBy = { ...prev.trustedBy, ...sectionsResult.value.trustedBy };
+            } else {
+              next[key] = sectionsResult.value[key];
+            }
+          }
+        });
+      }
+
+      ITEM_COLLECTIONS.forEach((collection, index) => {
+        const result = itemResults[index];
+        if (result?.status === 'fulfilled' && Array.isArray(result.value)) {
+          if (collection === 'trustedBy') {
+            next.trustedBy = { ...next.trustedBy, items: result.value };
+          } else {
+            next[collection] = result.value;
+          }
+        }
+      });
+
+      return next;
+    });
+  }
+
+  // Stale-while-revalidate: the static content above renders immediately
+  // (fast, and resilient if the API is down or cold-starting), then this
+  // swaps in live data from the database once it arrives, so edits made in
+  // the dashboard show up without a rebuild/redeploy.
+  useEffect(() => {
+    if (!isApiConfigured()) return;
+
+    let cancelled = false;
+
+    refreshContent()
+      .catch((err) => {
+        // Stay on the static fallback content - never let a down/cold-starting
+        // API take the site down.
+        console.warn('Live content fetch failed, using built-in content:', err.message);
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+
+    return () => { cancelled = true; };
+  }, []);
+
   // Provide CMS data with mock data as fallback
   const value = {
     loading,
+    refreshContent,
     content,
     
     // Helper getters that return CMS data or mock data
