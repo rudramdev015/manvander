@@ -55,7 +55,11 @@ export const SECTION_SCHEMAS = {
   },
   intro: {
     label: 'Intro Statement',
-    fields: [{ name: 'text', label: 'Paragraph Text', type: 'textarea' }],
+    fields: [
+      { name: 'line1', label: 'Line 1', type: 'textarea' },
+      { name: 'line2', label: 'Line 2', type: 'textarea' },
+      { name: 'line3', label: 'Line 3', type: 'textarea' },
+    ],
   },
   about: {
     label: 'About Section',

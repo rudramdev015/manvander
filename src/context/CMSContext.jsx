@@ -197,7 +197,7 @@ export function CMSProvider({ children }) {
     
     getHero: () => content?.hero || mockData.heroContent,
 
-    getIntro: () => content?.intro || { text: '' },
+    getIntro: () => content?.intro || { line1: '', line2: '', line3: '' },
 
     getAbout: () => content?.about || mockData.aboutContent,
 
