@@ -211,4 +211,11 @@ export const ITEM_SCHEMAS = {
       { name: 'image', label: 'Photo', type: 'image' },
     ],
   },
+  instagram: {
+    label: 'Instagram Feed (Follow Along)',
+    summary: (d) => (d.image ? d.image.split('/').pop() : 'New photo'),
+    fields: [
+      { name: 'image', label: 'Photo', type: 'image' },
+    ],
+  },
 };

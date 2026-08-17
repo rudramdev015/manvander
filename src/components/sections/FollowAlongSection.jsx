@@ -6,19 +6,17 @@ import { OptimizedImage } from '@/components/common';
 
 /**
  * FollowAlongSection - Instagram follow CTA with a mosaic of real work,
- * sits right above the footer. The mosaic pulls straight from whatever
- * photos are currently in Portfolio/Trusted By - edit those from the
- * dashboard and this updates with them, no hardcoded image list to keep
- * in sync by hand.
+ * sits right above the footer. The mosaic is its own curated photo list
+ * (dashboard -> Instagram Feed), independent of Portfolio/Trusted By, so
+ * it always matches what's actually posted on Instagram rather than
+ * whatever happens to be in other sections.
  */
 const FollowAlongSection = () => {
-  const { getSocialMedia, getSiteSettings, getPortfolio, getTrustedBy } = useCMS();
+  const { getSocialMedia, getSiteSettings, getInstagramFeed } = useCMS();
   const social = getSocialMedia();
   const settings = getSiteSettings();
 
-  const portfolioPhotos = getPortfolio().flatMap((item) => item.gallery?.length ? item.gallery : [item.image]);
-  const trustedByPhotos = (getTrustedBy()?.items || []).map((item) => item.image);
-  const mosaicImages = [...portfolioPhotos, ...trustedByPhotos].filter(Boolean);
+  const mosaicImages = getInstagramFeed().map((item) => item.image).filter(Boolean);
   const instagramUrl = social?.instagram || 'https://instagram.com/houseofechoes';
   const handle = instagramUrl.replace(/^https?:\/\/(www\.)?instagram\.com\//, '@').replace(/\/$/, '');
 

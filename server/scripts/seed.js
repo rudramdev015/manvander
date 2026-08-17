@@ -78,6 +78,9 @@ async function run() {
 
   await seedItems('trustedBy', trustedBy?.items || []);
 
+  const instagram = readJSON('instagram/_data.json');
+  await seedItems('instagram', instagram?.items || []);
+
   console.log('Done.');
   await mongoose.disconnect();
 }

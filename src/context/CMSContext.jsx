@@ -27,6 +27,9 @@ import faqDataFile from '../../content/faq/_data.json';
 // Import Trusted By from _data.json
 import trustedByDataFile from '../../content/trusted-by/_data.json';
 
+// Import curated Instagram feed from _data.json
+import instagramDataFile from '../../content/instagram/_data.json';
+
 // Services, Pricing and Partners are each one file per item (folder-based CMS
 // collections). Glob-import every file in the folder instead of naming each
 // one, so a new service/plan/partner added from the CMS admin shows up on
@@ -53,6 +56,7 @@ const testimonialsData = Array.isArray(testimonialsDataFile)
   ? testimonialsDataFile
   : (testimonialsDataFile?.items || []);
 const faqData = Array.isArray(faqDataFile) ? faqDataFile : (faqDataFile?.items || []);
+const instagramData = Array.isArray(instagramDataFile) ? instagramDataFile : (instagramDataFile?.items || []);
 
 const CMSContext = createContext(null);
 
@@ -73,7 +77,8 @@ const initialContent = {
   partners: partnersData || [],
   gallery: galleryData || [],
   faq: faqData || [],
-  trustedBy: trustedByDataFile || { items: [] }
+  trustedBy: trustedByDataFile || { items: [] },
+  instagram: instagramData || []
 };
 
 // Section keys and item collections served by the Node/Mongo backend.
@@ -81,7 +86,7 @@ const initialContent = {
 // live backend collection (the section was removed from the site), so it
 // stays on its static fallback only.
 const SECTION_KEYS = ['settings', 'social', 'hero', 'intro', 'about', 'journey', 'whyChooseUs', 'contact', 'trustedBy'];
-const ITEM_COLLECTIONS = ['services', 'portfolio', 'testimonials', 'partners', 'gallery', 'faq', 'trustedBy'];
+const ITEM_COLLECTIONS = ['services', 'portfolio', 'testimonials', 'partners', 'gallery', 'faq', 'trustedBy', 'instagram'];
 
 export function CMSProvider({ children }) {
   const [content, setContent] = useState(initialContent);
@@ -248,6 +253,14 @@ export function CMSProvider({ children }) {
     getGallery: (featuredOnly = false) => {
       const gallery = [...(content?.gallery || [])].sort((a, b) => (a.order || 0) - (b.order || 0));
       return featuredOnly ? gallery.filter(item => item.featured) : gallery;
+    },
+
+    // Instagram feed - the exact photos to show in Follow Along, curated
+    // separately from Portfolio/Trusted By so it's not automatically tied
+    // to what's posted elsewhere on the site
+    getInstagramFeed: () => {
+      const items = [...(content?.instagram || [])].sort((a, b) => (a.order || 0) - (b.order || 0));
+      return items;
     },
 
     getContact: () => content?.contact || mockData.contactInfo,
