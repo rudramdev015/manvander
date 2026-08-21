@@ -7,6 +7,7 @@ export { default as PortfolioSection } from './PortfolioSection';
 export { default as GallerySection } from './GallerySection';
 export { default as WhyChooseUsSection } from './WhyChooseUsSection';
 export { default as TrustedBySection } from './TrustedBySection';
+export { default as WeddingStoriesSection } from './WeddingStoriesSection';
 export { default as TestimonialsSection } from './TestimonialsSection';
 export { default as FAQSection } from './FAQSection';
 export { default as FollowAlongSection } from './FollowAlongSection';

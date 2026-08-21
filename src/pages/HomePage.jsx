@@ -8,6 +8,7 @@ import {
   ServicesSection,
   WhyChooseUsSection,
   TrustedBySection,
+  WeddingStoriesSection,
   FAQSection,
   ContactSection,
   FollowAlongSection,
@@ -52,6 +53,11 @@ const HomePage = () => {
         {/* Trusted By - real couples, right after the intro */}
         <section id="trusted-by">
           <TrustedBySection />
+        </section>
+
+        {/* Wedding Stories - real weddings, each linking to its own story page */}
+        <section id="portfolio">
+          <WeddingStoriesSection />
         </section>
 
         {/* About - Who we are */}

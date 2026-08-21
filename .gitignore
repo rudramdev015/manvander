@@ -11,6 +11,9 @@ build/
 luxiephoto-website/
 *.zip
 
+# Local dev-only MongoDB data (mongodb-memory-server)
+.local-mongo-data/
+
 # Environment variables
 .env
 .env.local

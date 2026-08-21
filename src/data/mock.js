@@ -18,6 +18,11 @@ export const navigationLinks = [
     hasDropdown: false
   },
   {
+    name: 'Wedding Stories',
+    path: '#portfolio',
+    hasDropdown: false
+  },
+  {
     name: 'Services',
     path: '#services',
     hasDropdown: false
